@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Collegue} from "./auth.domains";
-import {AuthService} from "./auth.service";
-import {Router} from "@angular/router";
+import {Collegue} from './auth.domains';
+import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 /**
  * Formulaire d'authentification.
@@ -21,19 +21,24 @@ import {Router} from "@angular/router";
               <h4>Utilisateurs</h4>
             </mdb-card-title>
             <mdb-card-text>
-              Deux utilisateurs sont créés par défaut :
+              Trois utilisateurs sont créés par défaut :
               <ul>
                 <li>admin@dev.fr / superpass / ROLE_ADMINISTRATEUR, ROLE_UTILISATEUR</li>
                 <li>user@dev.fr / superpass / ROLE_UTILISATEUR</li>
+                <li>manager@dev.fr / superpass / ROLE_MANAGER, ROLE_UTILISATEUR</li>
               </ul>
-              
+
             </mdb-card-text>
-            
+
           </mdb-card-body>
         </mdb-card>
         <form>
           <div class="md-form">
             <i class="fa fa-envelope prefix grey-text"></i>
+            // tslint:disable-next-line: max-line-length
+            // tslint:disable-next-line: max-line-length
+            // tslint:disable-next-line: max-line-length
+            // tslint:disable-next-line: max-line-length
             <input type="text" [validateSuccess]="false" data-error="Une adresse email est requise" id="defaultForm-email" class="form-control" name="email" mdbInputDirective [(ngModel)]="collegue.email" required>
             <label for="defaultForm-email">Email</label>
           </div>
@@ -53,17 +58,17 @@ import {Router} from "@angular/router";
         </form>
       </mdb-card-body>
     </mdb-card>
-    
+
   `,
   styles: []
 })
 export class AuthComponent implements OnInit {
 
 
-  collegue:Collegue = new Collegue({});
-  err:boolean;
+  collegue: Collegue = new Collegue({});
+  err: boolean;
 
-  constructor(private _authSrv:AuthService, private _router:Router) { }
+  constructor(private _authSrv: AuthService, private _router: Router) { }
 
   ngOnInit() {
   }
@@ -75,7 +80,7 @@ export class AuthComponent implements OnInit {
         col => this._router.navigate(['/tech']),
 
         // en cas d'erreur, affichage d'un message d'erreur
-        err =>this.err = true
+        err => this.err = true
       );
   }
 
