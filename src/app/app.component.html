@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="jumbotron" *ngIf="(collegueConnecte | async).estAnonyme()">
+        <img class="img-thumbnail" src="https://www.sid-diginamic.fr/media/diginamic.png" class="rounded mx-auto d-block" alt="GM_Logo" width="150px" style="padding: 20px;">
+        <h2 class="h1 h1-responsive text-center">Gestion des Missions</h2>
+    </div>
+</div>
+<app-menu></app-menu>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
