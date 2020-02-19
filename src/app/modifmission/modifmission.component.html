@@ -1,0 +1,96 @@
+<!-- Main -->
+<main>
+    <div class="container" style="height: 500px; margin-bottom: 30">
+        <div class="row mt-5 pt-5">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+                <form class="form-inline">
+                    <div class="form-group mb-2">
+                        <label for="datedebut" class="sr-only">Date de début :</label>
+                        <input type="text" readonly class="form-control-plaintext text-right" id="datedebut"
+                            value="Date de début :">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="entrerdatedebut" class="sr-only"></label>
+                        <input type="date" class="form-control" id="entrerdatedebut" placeholder="">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="staticEmail2" class="sr-only">Date de fin :</label>
+                        <input type="text" readonly class="form-control-plaintext text-right" id="datefin"
+                            value="Date de fin :">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="entrerdatefin" class="sr-only"></label>
+                        <input type="date" class="form-control" id="entrerdatefin" placeholder="">
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="nature" class="sr-only">Nature :</label>
+                        <input type="text" readonly class="form-control-plaintext text-right" id="nature"
+                            value="Nature :">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <select class="custom-select">
+                            <option selected></option>
+                            <option value="1">Conseil</option>
+                            <option value="2">Expertise Technique</option>
+                            <option value="3">Formation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label for="villedepart" class="sr-only" name="villedep" [(ngModel)]="villedepart.nom">Ville de
+                            départ</label>
+                        <input type="text" readonly class="form-control-plaintext text-right" id="villedepart"
+                            value="Ville de départ :">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="entrervilledepart" class="sr-only"></label>
+                        <input type="text" class="form-control" id="entrervilledepart" placeholder="">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="villearrivee" class="sr-only" name="ville" [(ngModel)]="villedepart.nom">Ville
+                            d'arrivée</label>
+                        <input type="text" readonly class="form-control-plaintext text-right" id="villearrivee"
+                            value="Ville d'arrivée :">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="entrervillearrivee" class="sr-only"></label>
+                        <input type="text" class="form-control" id="entrervillearrivee" placeholder="">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="transport" class="sr-only">Transport :</label>
+                        <input type="text" readonly class="form-control-plaintext text-right" id="transport"
+                            value="Transport :">
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <select class="custom-select">
+                            <option selected></option>
+                            <option value="1">Avion</option>
+                            <option value="2">Train</option>
+                            <option value="3">Covoiturage</option>
+                            <option value="3">Voiture de service</option>
+                        </select>
+                    </div>
+
+                </form>
+                <div class="row">
+                    <div class="col-md-5 text-right">Estimation prime</div>
+                    
+                    <div class="col-md-6 text-left">value</div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-danger mb-2" [disabled]="etatForm.invalid"
+                            (click)="abandonnerModif()">Annuler</button>
+                        <button type="submit" class="btn btn-success mx-sm-3 mb-2" [disabled]="etatForm.invalid"
+                            (click)="enregistrerModif()">Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

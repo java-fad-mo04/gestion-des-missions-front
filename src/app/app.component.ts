@@ -3,24 +3,14 @@ import {AuthService} from "./auth/auth.service";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
 import {Collegue} from "./auth/auth.domains";
+import {ModifmissionComponent} from "./modifmission/modifmission.component";
 
 /**
  * Composant principal de l'application.
  */
 @Component({
   selector: 'app-root',
-  template: `
-    <div class="jumbotron">
-      <h2 class="h1 h1-responsive">Super Application</h2>
-      <div *ngIf="!(collegueConnecte | async).estAnonyme()">
-        <span>{{(collegueConnecte | async).email}}</span>
-        <span>({{(collegueConnecte | async).roles}})</span>
-        <a  class="btn btn-danger" (click)="seDeconnecter()">Se déconnecter</a>
-      </div>
-    </div>
-    <router-outlet></router-outlet>
-  `,
-  styles: []
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
 
