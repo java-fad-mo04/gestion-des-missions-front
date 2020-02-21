@@ -10,6 +10,9 @@ import { AuthComponent } from './auth/auth.component';
 import {FormsModule} from "@angular/forms";
 import {StatutConnecteService} from "./auth/statut-connecte.service";
 import {AuthInterceptorService} from "./auth/auth-interceptor.service";
+import { ModifmissionComponent } from './modifmission/modifmission.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   { path:'tech', component: TechComponent, canActivate:[StatutConnecteService]}, // /tech accessible uniquement si connecté
@@ -22,14 +25,17 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     TechComponent,
-    AuthComponent
+    AuthComponent,
+    ModifmissionComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

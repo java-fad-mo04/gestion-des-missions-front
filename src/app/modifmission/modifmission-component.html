@@ -1,0 +1,103 @@
+<!-- Main -->
+<main>
+
+    <div class="container" style="height: 500px; margin-bottom: 30">
+        <div class="row mt-5 pt-5">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-inline" (ngSubmit)="enregistrerModif()" #etatForm="ngForm">
+                            <p class="text-danger" *ngIf="rectiMission.dateDebut == rectiMission.dateFin">Vous avez sélectionné deux dates identiques !</p>
+
+                            <!-- Date de début -->
+                            <div class="form-group mb-2">
+                                <label for="datedebut"> Date de début : </label><input type="date" class="form-control"
+                                    id="datedebut" name="dateDebut" [(ngModel)]="rectiMission.dateDebut"required #etatDeb="ngModel">
+                                    <p class= "text-danger" *ngIf="etatDeb.invalid">Veuillez sélectionner une date de début</p>
+                                   
+                                </div>
+
+
+                            <!-- Date de fin -->
+                            <div class="form-group mx-sm-4 mb-2 text-dark">
+                                <label for="entrerdatefin">Date de fin :</label>
+                                <input type="date" class="form-control" id="entrerdatefin" name="dateFin"
+                                    [(ngModel)]="rectiMission.dateFin" required #etatFin="ngModel">
+                                    <p class= "text-danger" *ngIf="etatFin.invalid">Veuillez sélectionner une date de fin</p>
+                            </div>
+
+                            <!-- Nature -->
+                            <div class="form-group mx-sm-5 mb-2">
+                                <label for="nature">Nature :</label>
+                                <select class="custom-select" name="nature" id="nature" [(ngModel)]="rectiMission.nature" required #etatNat="ngModel">
+                                    <option selected></option>
+                                    <option value="1">Conseil</option>
+                                    <option value="2">Expertise Technique</option>
+                                    <option value="3">Formation</option>
+                                </select>
+                                <p class= "text-danger" *ngIf="etatNat.invalid">Veuillez sélectionner une nature</p>
+                            </div>
+
+                            <!-- Ville de départ -->
+                            <div class="form-group mb-2" >
+                                <label for="villedepart">Ville de départ :</label>
+                                <input type="text" class="form-control" id="villedepart" name="villeDepart"
+                                    [(ngModel)]="rectiMission.villeDepart" required minlength="3" #etatDep="ngModel">
+                                <p *ngIf="etatDep.invalid && etatDep.dirty">Vous devez saisir un nom d'au moins 3
+                                    lettres</p>
+                                <p class= "text-danger" *ngIf="etatDep.invalid">Veuillez remplir le champ</p>
+                            </div>
+
+                            <!-- Ville d'arrivée -->
+                            <div class="form-group mb-2 text-dark">
+                                <label for="villearrivee">Ville d'arrivée :</label>
+                                <input type="text" class="form-control" id="villearrivee" name="villeArrivee"
+                                    [(ngModel)]="rectiMission.villeArrivee" required minlength="3" #etatArr="ngModel">
+                                <p *ngIf="etatArr.invalid && etatArr.dirty">Vous devez saisir un nom d'au moins 3
+                                    lettres </p>
+                                <p class= "text-danger" *ngIf="etatArr.invalid">Veuillez remplir le champ</p>
+                            </div>
+
+                            <!-- Transport -->
+                            <div class="form-group mx-sm-4 mb-2 text-dark">
+                                <label for="transport">Transport :</label>
+                                <select class="custom-select" name="transport" id="transport" required>
+                                    <option selected></option>
+                                    <option value="1">Avion</option>
+                                    <option value="2">Train</option>
+                                    <option value="3">Covoiturage</option>
+                                    <option value="3">Voiture de service</option>
+                                </select>
+                            </div>
+
+                            <!-- Estimation prime-->
+                            <div class="col-md-5 offset-1 text-dark">Estimation prime</div>
+                            <div class="col-md-5 ">value</div>
+
+                            <!-- Boutons-->
+                            <div class="col-md-5 text-right ">
+                                <button type="submit" class="btn btn-danger mb-2" 
+                                    (click)="abandonnerModif(etatForm)">Annuler</button>
+                            </div>
+
+                            <div class="col-md-6 text-left">
+                                <button type="submit" class="btn btn-success mx-sm-3 mb-2"
+                                    [disabled]="etatForm.invalid "
+                                    (click)="enregistrerModif(etatForm)">Valider</button>
+                            </div>
+                            
+                        </form>
+                        <div *ngIf="messageErreur" class="alert alert-danger" role="alert">
+                            {{messageErreur}}
+                        </div>
+
+                        <div *ngIf="messageOk" class="alert alert-success" role="alert">
+                            {{messageOk}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
