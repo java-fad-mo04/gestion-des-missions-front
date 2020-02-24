@@ -14,6 +14,16 @@ import { VisualisationNatureComponent } from './visualisation-nature/visualisati
 import { CreationNatureComponent } from './creation-nature/creation-nature.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
+import { MenuComponent } from './menu/menu.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { CollegueComponent } from './collegue/collegue.component';
+import { PlanningMissionComponent } from './planning-mission/planning-mission.component';
+import { PrimesComponent } from './primes/primes.component';
+import { SaisieNoteComponent } from './saisie-note/saisie-note.component';
+import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
+import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
+import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
+import { ModifMissionComponent } from './modif-mission/modif-mission.component';
 
 
 const routes: Routes = [
@@ -31,7 +41,17 @@ const routes: Routes = [
     AuthComponent,
     VisualisationNatureComponent,
     CreationNatureComponent,
-    CreationNatureDirective
+    CreationNatureDirective,
+    MenuComponent,
+    AcceuilComponent,
+    CollegueComponent,
+    PlanningMissionComponent,
+    PrimesComponent,
+    SaisieNoteComponent,
+    ValidationMissionComponent,
+    VisualisationMissionComponent,
+    DemandeMissionComponent,
+    ModifMissionComponent
 
   ],
   imports: [
