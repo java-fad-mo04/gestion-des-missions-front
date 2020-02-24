@@ -28,7 +28,8 @@ const routes: Routes = [
     AuthComponent,
     ModifmissionComponent,
     ContactComponent,
-    NavbarComponent
+    NavbarComponent,
+    
   ],
   imports: [
     BrowserModule,
