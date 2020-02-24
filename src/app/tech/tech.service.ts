@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, combineLatest, merge, from, of} from "rxjs";
-import {environment} from "../../environments/environment";
-import {flatMap, concatMap, delay} from "rxjs/operators";
-import {BackendLink} from "./tech.domains";
+import {Observable, combineLatest, merge, from, of} from 'rxjs';
+import {environment} from '../../environments/environment';
+import {flatMap, concatMap, delay} from 'rxjs/operators';
+import {BackendLink} from './tech.domains';
 
 
 /**
@@ -30,5 +30,6 @@ export class TechService {
       ), of(new BackendLink({name: 'versions', href:`${environment.baseUrl}${environment.apiVersion}`})))
       ;
   }
+
 
 }
