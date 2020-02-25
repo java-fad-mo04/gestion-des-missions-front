@@ -1,0 +1,46 @@
+<app-menu></app-menu>
+
+<div class="row mt-5">
+</div>
+
+<div class="table-responsive">
+
+  <table id="missions" class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th class="th-sm">Date de début</th>
+            <th class="th-sm">Date de fin</th>
+            <th class="th-sm">Nature</th>
+            <th class="th-sm">Départ</th>
+            <th class="th-sm">Arrivée</th>
+            <th class="th-sm">Transport</th>
+            <th class="th-sm">Statut</th>
+            <th class="th-sm">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+     <!--<tr ng-repeat="mission in missions"> -->
+
+        <tr *ngFor="let mission of missions">
+        <td>{{mission.dateDebut| date: 'shortDate'}}</td>
+        <td>{{mission.dateFin | date: 'shortDate'}}</td>
+        <td>{{mission.nature.libelle}}</td>
+        <td>{{mission.villeDepart}}</td>
+        <td>{{mission.villeArrivee}}</td>
+        <td>{{mission.transport.libelle}}</td>
+        <td>{{mission.status}}</td>
+        <td align="right">
+         <!-- <a><img class="mr-3" src="../../assets/img/eye-24px.svg" *ngIf="mission.status == 'VALIDEE'" width="20" alt="delete"></a>-->
+          <a><img class="mr-3" src="../../assets/img/pencil.svg" *ngIf="mission.status == 'INITIALE'" width="20" alt="edit"></a>
+          <a><img src="../../assets/img/trash.svg" width="20" alt="delete"></a>
+
+        </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div class="row mt-2">
+<div class="col-12 text-right">
+  Demander une mission <button class="btn btn-dark" routerLink="/demande-mission">+</button>
+</div>
+</div>

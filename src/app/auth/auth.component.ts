@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Collegue} from "./auth.domains";
-import {AuthService} from "./auth.service";
-import {Router} from "@angular/router";
+import {Collegue} from './auth.domains';
+import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
 
 /**
  * Formulaire d'authentification.
@@ -21,27 +21,26 @@ import {Router} from "@angular/router";
               <h4>Utilisateurs</h4>
             </mdb-card-title>
             <mdb-card-text>
-              Deux utilisateurs sont créés par défaut :
+              Trois utilisateurs sont créés par défaut :
               <ul>
                 <li>admin@dev.fr / superpass / ROLE_ADMINISTRATEUR, ROLE_UTILISATEUR</li>
                 <li>user@dev.fr / superpass / ROLE_UTILISATEUR</li>
+                <li>manager@dev.fr / superpass / ROLE_UTILISATEUR, ROLE_MANAGER</li>
               </ul>
-              
+
             </mdb-card-text>
-            
+
           </mdb-card-body>
         </mdb-card>
         <form>
           <div class="md-form">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="text" [validateSuccess]="false" data-error="Une adresse email est requise" id="defaultForm-email" class="form-control" name="email" mdbInputDirective [(ngModel)]="collegue.email" required>
-            <label for="defaultForm-email">Email</label>
+            <input type="text" [validateSuccess]="false" data-error="Une adresse email est requise" id="defaultForm-email" class="form-control" name="email" mdbInputDirective [(ngModel)]="collegue.email" placeholder="Email" required>
           </div>
 
           <div class="md-form">
             <i class="fa fa-lock prefix grey-text"></i>
-            <input type="password" id="defaultForm-pass" [validateSuccess]="false"  data-error="Un mot de passe est requis" name="motDePasse" class="form-control" mdbInputDirective [(ngModel)]="collegue.motDePasse" required>
-            <label for="defaultForm-pass">Mot de passe</label>
+            <input type="password" id="defaultForm-pass" [validateSuccess]="false"  data-error="Un mot de passe est requis" name="motDePasse" class="form-control" mdbInputDirective [(ngModel)]="collegue.motDePasse" placeholder="Mot de passe" required>
           </div>
 
           <div class="text-center">
@@ -53,15 +52,15 @@ import {Router} from "@angular/router";
         </form>
       </mdb-card-body>
     </mdb-card>
-    
+
   `,
   styles: []
 })
 export class AuthComponent implements OnInit {
 
 
-  collegue:Collegue = new Collegue({});
-  err:boolean;
+  collegue: Collegue = new Collegue({});
+  err: boolean;
 
   constructor(private _authSrv:AuthService, private _router:Router) { }
 
@@ -72,10 +71,10 @@ export class AuthComponent implements OnInit {
     this._authSrv.connecter(this.collegue.email, this.collegue.motDePasse)
       .subscribe(
         // en cas de succès, redirection vers la page /tech
-        col => this._router.navigate(['/tech']),
+        col => this._router.navigate(['/acceuil']),
 
         // en cas d'erreur, affichage d'un message d'erreur
-        err =>this.err = true
+        err => this.err = true
       );
   }
 
