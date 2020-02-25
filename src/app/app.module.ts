@@ -17,12 +17,30 @@ import { CreationNatureDirective } from './creation-nature/creation-nature.direc
 import { ModifierNatureComponent } from './modifier-nature/modifier-nature.component';
 
 
+import { MenuComponent } from './menu/menu.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { CollegueComponent } from './collegue/collegue.component';
+import { PlanningMissionComponent } from './planning-mission/planning-mission.component';
+import { PrimesComponent } from './primes/primes.component';
+import { SaisieNoteComponent } from './saisie-note/saisie-note.component';
+import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
+import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
+import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
+import { ModifMissionComponent } from './modif-mission/modif-mission.component';
+
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
-  { path: '', redirectTo: '/tech', pathMatch: 'full' }
+  { path: 'demande-mission', component: DemandeMissionComponent},
+  { path: 'acceuil', component: AcceuilComponent},
+  { path: 'gestion-mission', component: VisualisationMissionComponent},
+  { path: 'planning', component: PlanningMissionComponent},
+  { path: 'primes', component: PrimesComponent},
+  { path: 'saisie-notes', component: SaisieNoteComponent},
+  { path: 'validation', component: ValidationMissionComponent},
+  { path: '', redirectTo: '/acceuil', pathMatch: 'full' }
 ];
 
 
@@ -34,7 +52,17 @@ const routes: Routes = [
     VisualisationNatureComponent,
     CreationNatureComponent,
     CreationNatureDirective,
-    ModifierNatureComponent
+    ModifierNatureComponent,
+    MenuComponent,
+    AcceuilComponent,
+    CollegueComponent,
+    PlanningMissionComponent,
+    PrimesComponent,
+    SaisieNoteComponent,
+    ValidationMissionComponent,
+    VisualisationMissionComponent,
+    DemandeMissionComponent,
+    ModifMissionComponent
 
 
   ],

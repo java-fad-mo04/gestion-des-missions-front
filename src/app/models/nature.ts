@@ -1,3 +1,6 @@
+/**
+ * Nature de Mission.
+ */
 export class Nature {
 
   id?: number;

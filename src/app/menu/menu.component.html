@@ -1,0 +1,33 @@
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" routerLink="/acceuil"><img src="../assets/images/startup.svg" height="60" width="60"></a>
+
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"> &#9776; </button>
+
+      <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/acceuil" (click)="isMenuCollapsed = true">Acceuil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/gestion-mission" (click)="isMenuCollapsed = true">Gestion des missions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/planning" (click)="isMenuCollapsed = true">Planning des missions</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" routerLink="/primes" (click)="isMenuCollapsed = true">Primes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/saisie-notes" (click)="isMenuCollapsed = true">Saisie note de frais</a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin">
+            <a class="nav-link" routerLink="/nature" (click)="isMenuCollapsed = true">Nature des missions</a>
+          </li>
+          <li class="nav-item" *ngIf="isManager">
+            <a class="nav-link" routerLink="/validation" (click)="isMenuCollapsed = true">Validation des missions</a>
+          </li>
+        </ul>
+      </div>
+<app-collegue></app-collegue>
+  </nav>

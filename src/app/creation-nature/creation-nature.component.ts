@@ -10,8 +10,6 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
 @Component({
   selector: 'app-modal-creation-nature',
   template: `
-
-
 <div class="modal-header">
     <h4 class="modal-title">Ajout d'une nature de mission</h4>
 </div>
