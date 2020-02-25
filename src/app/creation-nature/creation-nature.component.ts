@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Nature } from '../models/nature';
 import { CreationNatureService } from './creation-nature.service';
 import { VisualisationNatureComponent } from '../visualisation-nature/visualisation-nature.component';
+import { MsgBoxComponent } from '../msg-box/msg-box.component';
 
 
 
@@ -36,12 +37,12 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
 
 <div class="col-4 ">
       <select id="nature-facture" class="custom-select" name="estFacture" [(ngModel)]="nature.estFacture" [ngClass]="{'is-valid':estFacture.valid}"  #estFacture required>
-        <option name="estFacture" value="true">OUI</option>
-        <option name="estFacture" value="false">NON</option>
+        <option name="estFacture" [ngValue]="true">OUI</option>
+        <option name="estFacture" [ngValue]="false">NON</option>
       </select>
 </div>
 
-<div class="row" *ngIf="estFacture.value === 'true'">
+<div class="row" *ngIf="nature.estFacture === true">
 <div class="col-5">
   <label for="nature-tjm" class="control-label">TJM (€)</label>
   </div>
@@ -60,12 +61,12 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
 
   <div class="col-4">
     <select id="nature-prime" class="custom-select" name="estPrime"  [(ngModel)]="nature.estPrime" #estPrime required>
-      <option name="estPrime" value="true">OUI</option>
-      <option name="estPrime" value="false">NON</option>
+      <option name="estPrime" [ngValue]="true">OUI</option>
+      <option name="estPrime" [ngValue]="false">NON</option>
     </select>
   </div>
 
-  <div class="row" *ngIf="estPrime.value === 'true'">
+  <div class="row" *ngIf="nature.estPrime === true">
   <div class="col-5">
   <label for="nature-primeValue" class="control-label">% Prime</label>
   </div>
@@ -98,10 +99,16 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
 export class CreationNatureComponent implements OnInit {
 
   nature: Nature = {};
+  modalOptions: NgbModalOptions;
 
   msgRetour: string;
 
-  constructor(public activeModal: NgbActiveModal, private dataServ: CreationNatureService, private modalService: NgbModal) { }
+  constructor(public activeModal: NgbActiveModal, private dataServ: CreationNatureService, private modalService: NgbModal) {
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    };
+  }
 
 
 
@@ -113,14 +120,17 @@ export class CreationNatureComponent implements OnInit {
     this.dataServ.createNature(this.nature).subscribe((msg: string) => {
 
       this.msgRetour = msg;
-
       this.activeModal.close();
 
+      const modal = this.modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
 
     }, error => {
       this.msgRetour = error.error;
 
       this.activeModal.close();
+      const modal = this.modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
 
     });
 

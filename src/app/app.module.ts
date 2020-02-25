@@ -27,19 +27,20 @@ import { ValidationMissionComponent } from './validation-mission/validation-miss
 import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
 import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
 import { ModifMissionComponent } from './modif-mission/modif-mission.component';
+import { MsgBoxComponent } from './msg-box/msg-box.component';
 
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
-  { path: 'demande-mission', component: DemandeMissionComponent},
-  { path: 'acceuil', component: AcceuilComponent},
-  { path: 'gestion-mission', component: VisualisationMissionComponent},
-  { path: 'planning', component: PlanningMissionComponent},
-  { path: 'primes', component: PrimesComponent},
-  { path: 'saisie-notes', component: SaisieNoteComponent},
-  { path: 'validation', component: ValidationMissionComponent},
+  { path: 'demande-mission', component: DemandeMissionComponent },
+  { path: 'acceuil', component: AcceuilComponent },
+  { path: 'gestion-mission', component: VisualisationMissionComponent },
+  { path: 'planning', component: PlanningMissionComponent },
+  { path: 'primes', component: PrimesComponent },
+  { path: 'saisie-notes', component: SaisieNoteComponent },
+  { path: 'validation', component: ValidationMissionComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 ];
 
@@ -62,7 +63,8 @@ const routes: Routes = [
     ValidationMissionComponent,
     VisualisationMissionComponent,
     DemandeMissionComponent,
-    ModifMissionComponent
+    ModifMissionComponent,
+    MsgBoxComponent
 
 
   ],
@@ -80,7 +82,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent,ModifierNatureComponent]
+  entryComponents: [CreationNatureComponent, ModifierNatureComponent, MsgBoxComponent]
 
 })
 export class AppModule { }

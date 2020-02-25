@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Nature } from '../models/nature';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModifierNatureService } from './modifier-nature.service';
+import { MsgBoxComponent } from '../msg-box/msg-box.component';
 
 @Component({
   selector: 'app-modifier-nature',
@@ -33,15 +34,15 @@ import { ModifierNatureService } from './modifier-nature.service';
 <label for="nature-facture">Facturée</label>
 </div>
 
-<div class="col-4 ">
+<div class="col-4">
       <select id="nature-facture" class="custom-select" name="estFacture"
       [(ngModel)]="nature.estFacture" [ngClass]="{'is-valid':estFacture.valid}"  #estFacture required>
-        <option name="estFacture" value="true">OUI</option>
-        <option name="estFacture" value="false">NON</option>
+        <option name="estFacture" [ngValue]="true">OUI</option>
+        <option name="estFacture" [ngValue]="false">NON</option>
       </select>
 </div>
 
-<div class="row" *ngIf="estFacture.value === 'true'">
+<div class="row" *ngIf="nature.estFacture == true">
 <div class="col-5">
   <label for="nature-tjm" class="control-label">TJM (€)</label>
   </div>
@@ -62,12 +63,12 @@ import { ModifierNatureService } from './modifier-nature.service';
 
   <div class="col-4">
     <select id="nature-prime" class="custom-select" name="estPrime"  [(ngModel)]="nature.estPrime" #estPrime required>
-      <option name="estPrime" value="true">OUI</option>
-      <option name="estPrime" value="false">NON</option>
+      <option name="estPrime" [ngValue]="true" >OUI</option>
+      <option name="estPrime" [ngValue]="false" >NON</option>
     </select>
   </div>
 
-  <div class="row" *ngIf="estPrime.value === 'true'">
+  <div class="row" *ngIf="nature.estPrime == true">
   <div class="col-5">
   <label for="nature-primeValue" class="control-label">% Prime</label>
   </div>
@@ -96,6 +97,7 @@ import { ModifierNatureService } from './modifier-nature.service';
     <button type="button" class="btn btn-success"  [ngClass]="{'disabled': natureForm.invalid}" (click)="modifierNature()">Valider</button>
   </div>
 
+  {{nature.estFacture}} {{nature.estPrime}}
   `,
   styles: []
 })
@@ -103,11 +105,20 @@ import { ModifierNatureService } from './modifier-nature.service';
 
 export class ModifierNatureComponent implements OnInit {
 
-  @Input() nature;
+  @Input() nature: Nature;
+
+  modalOptions: NgbModalOptions;
 
   msgRetour: string;
 
-  constructor(public activeModal: NgbActiveModal, private dataServ: ModifierNatureService, private modalService: NgbModal) { }
+  constructor(public activeModal: NgbActiveModal, private dataServ: ModifierNatureService, private modalService: NgbModal) {
+
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    };
+
+  }
 
   ngOnInit() {
 
@@ -119,14 +130,16 @@ export class ModifierNatureComponent implements OnInit {
     this.dataServ.modifierNature(this.nature).subscribe((msg: string) => {
 
       this.msgRetour = msg;
-
       this.activeModal.close();
+      const modal = this.modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
 
 
     }, error => {
       this.msgRetour = error.error;
-
       this.activeModal.close();
+      const modal = this.modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
 
     });
 

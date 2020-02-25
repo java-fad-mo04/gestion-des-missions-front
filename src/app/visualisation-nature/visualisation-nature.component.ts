@@ -5,6 +5,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureComponent } from '../creation-nature/creation-nature.component';
 import { ModifierNatureComponent } from '../modifier-nature/modifier-nature.component';
 import { Title } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-visualisation-nature',
@@ -34,11 +35,11 @@ import { Title } from '@angular/platform-browser';
 <ng-template #prime>
 <td>Non</td>
 </ng-template>
-      <td *ngIf="nature.tjm else tjm">{{nature.tjm}}</td>
+      <td *ngIf="nature.tjm != 0 else tjm">{{nature.tjm}}</td>
       <ng-template #tjm>
 <td>-</td>
 </ng-template>
-      <td *ngIf="nature.valeurPrime else valeurPrime">{{nature.valeurPrime}}</td>
+      <td *ngIf="nature.valeurPrime != 0 else valeurPrime">{{nature.valeurPrime}}</td>
       <ng-template #valeurPrime>
 <td>-</td>
 </ng-template>
@@ -83,10 +84,12 @@ export class VisualisationNatureComponent implements OnInit {
       backdropClass: 'customBackdrop'
     };
 
+
+
   }
 
   ngOnInit() {
-    this.titleService.setTitle( 'Gestion de missions - GDM' );
+    this.titleService.setTitle('Gestion de missions - GDM');
 
     this.visuServ.recuperationNature().subscribe((nature: Nature[]) => {
       this.listeNature = nature;
