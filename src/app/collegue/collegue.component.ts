@@ -10,14 +10,15 @@ import {Router} from '@angular/router';
   styles: []
 })
 export class CollegueComponent implements OnInit {
-  collegue: Collegue;
+  collegue: Observable<Collegue>;
 
   constructor(private _authSrv: AuthService, private _router: Router) { }
 
   ngOnInit() {
-    this._authSrv.collegueConnecteObs.subscribe(col => this.collegue = col);
+    this.collegue = this._authSrv.collegueConnecteObs;
   }
-/**
+
+  /**
    * Action déconnecter collègue.
    */
   seDeconnecter() {
