@@ -3,8 +3,8 @@ import { VisualisationNatureService } from './visualisation-nature.service';
 import { Nature } from '../models/nature';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureComponent } from '../creation-nature/creation-nature.component';
+import { ModifierNatureComponent } from '../modifier-nature/modifier-nature.component';
 import { Title } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-visualisation-nature',
@@ -22,8 +22,8 @@ import { Title } from '@angular/platform-browser';
       <th scope="col">Actions</th>
     </tr>
   </thead>
-  <tbody *ngFor="let nature of listeNature" >
-    <tr>
+  <tbody  >
+    <tr *ngFor="let nature of listeNature">
       <td>{{nature.libelle}}</td>
       <td *ngIf="nature.estFacture else facture">Oui</td>
 
@@ -43,7 +43,7 @@ import { Title } from '@angular/platform-browser';
 <td>-</td>
 </ng-template>
       <td>
-      <img src="../assets/images/edit-symbol.png" width="20px">
+      <img src="../assets/images/edit-symbol.png" width="20px" (click)="openModifier(nature.id)">
 
       <img src="../assets/images/bin.png" width="20px" >
       </td>
@@ -97,7 +97,23 @@ export class VisualisationNatureComponent implements OnInit {
     this.modalService.open(CreationNatureComponent);
   }
 
+  openModifier(id: number) {
 
+    let nat: Nature;
+
+
+    for (const nature of this.listeNature) {
+      if (nature.id === id) {
+
+        nat = nature;
+      }
+    }
+
+
+    const modal = this.modalService.open(ModifierNatureComponent);
+    modal.componentInstance.nature = nat;
+
+  }
 
 }
 

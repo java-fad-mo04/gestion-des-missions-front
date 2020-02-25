@@ -14,14 +14,14 @@ export class CreationNatureDirective implements Validator {
 
     // En cas de règle respecté (value commence par http), retourner null
     // Sinon retourner l'objet { UrlValidatorDirective : true }
-    console.log(control.value);
+
 
     if (control.value > 0 && control.value < 10) {
 
       return null; // OK
     }
 
- 
+
     return { CreationNatureDirective: true }; // KO => pas valide
   }
 
