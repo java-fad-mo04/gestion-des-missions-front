@@ -3,15 +3,13 @@ import { VisualisationNatureService } from './visualisation-nature.service';
 import { Nature } from '../models/nature';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureComponent } from '../creation-nature/creation-nature.component';
-
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
   selector: 'app-visualisation-nature',
-  template: `
-    <p>
-     Nature de Mission
-    </p>
+  template: `<app-menu></app-menu>
+
  <div class="row">
  <table class="table table-striped text-center">
   <thead>
@@ -78,7 +76,7 @@ export class VisualisationNatureComponent implements OnInit {
 
   listeNature: Nature[];
 
-  constructor(private visuServ: VisualisationNatureService, private modalService: NgbModal) {
+  constructor(private visuServ: VisualisationNatureService, private modalService: NgbModal, private titleService: Title) {
 
     this.modalOptions = {
       backdrop: 'static',
@@ -88,6 +86,7 @@ export class VisualisationNatureComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle( 'Gestion de missions - GDM' );
 
     this.visuServ.recuperationNature().subscribe((nature: Nature[]) => {
       this.listeNature = nature;

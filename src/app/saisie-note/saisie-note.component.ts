@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-saisie-note',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaisieNoteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle( 'Saisie note de frais - GDM' );
   }
 
 }

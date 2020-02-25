@@ -14,6 +14,7 @@ import { VisualisationNatureComponent } from './visualisation-nature/visualisati
 import { CreationNatureComponent } from './creation-nature/creation-nature.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
+
 import { MenuComponent } from './menu/menu.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { CollegueComponent } from './collegue/collegue.component';
@@ -30,7 +31,14 @@ const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
-  { path: '', redirectTo: '/tech', pathMatch: 'full' }
+  { path: 'demande-mission', component: DemandeMissionComponent},
+  { path: 'acceuil', component: AcceuilComponent},
+  { path: 'gestion-mission', component: VisualisationMissionComponent},
+  { path: 'planning', component: PlanningMissionComponent},
+  { path: 'primes', component: PrimesComponent},
+  { path: 'saisie-notes', component: SaisieNoteComponent},
+  { path: 'validation', component: ValidationMissionComponent},
+  { path: '', redirectTo: '/acceuil', pathMatch: 'full' }
 ];
 
 
