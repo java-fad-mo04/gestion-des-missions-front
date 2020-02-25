@@ -10,8 +10,6 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
 @Component({
   selector: 'app-modal-creation-nature',
   template: `
-
-
 <div class="modal-header">
     <h4 class="modal-title">Ajout d'une nature de mission</h4>
 </div>
@@ -93,12 +91,6 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
     <button type="button" class="btn btn-danger"  (click)="activeModal.close('Close click')">Annuler</button>
     <button type="button" class="btn btn-success"  (click)="createNature()" [ngClass]="{'disabled': natureForm.invalid}">Valider</button>
   </div>
-
-
-
-
-
-
 
   `,
   styles: []
