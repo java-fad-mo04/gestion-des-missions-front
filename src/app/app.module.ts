@@ -14,6 +14,8 @@ import { VisualisationNatureComponent } from './visualisation-nature/visualisati
 import { CreationNatureComponent } from './creation-nature/creation-nature.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
+import { ModifierNatureComponent } from './modifier-nature/modifier-nature.component';
+
 
 
 const routes: Routes = [
@@ -31,7 +33,9 @@ const routes: Routes = [
     AuthComponent,
     VisualisationNatureComponent,
     CreationNatureComponent,
-    CreationNatureDirective
+    CreationNatureDirective,
+    ModifierNatureComponent
+
 
   ],
   imports: [
@@ -48,7 +52,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent]
+  entryComponents: [CreationNatureComponent,ModifierNatureComponent]
 
 })
 export class AppModule { }

@@ -94,12 +94,6 @@ import { VisualisationNatureComponent } from '../visualisation-nature/visualisat
     <button type="button" class="btn btn-success"  (click)="createNature()" [ngClass]="{'disabled': natureForm.invalid}">Valider</button>
   </div>
 
-
-
-
-
-
-
   `,
   styles: []
 })
