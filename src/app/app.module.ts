@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'primes', component: PrimesComponent},
   { path: 'saisie-notes', component: SaisieNoteComponent},
   { path: 'validation', component: ValidationMissionComponent},
-  { path: '', redirectTo: '/acceuil', pathMatch: 'full' }
+  { path: '', redirectTo: '/auth', pathMatch: 'full' }
 ];
 
 
