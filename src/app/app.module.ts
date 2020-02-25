@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TechComponent } from './tech/tech.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AuthComponent } from './auth/auth.component';
+
 import { FormsModule } from '@angular/forms';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
@@ -27,6 +28,8 @@ import { ValidationMissionComponent } from './validation-mission/validation-miss
 import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
 import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
 import { ModifMissionComponent } from './modif-mission/modif-mission.component';
+import { ContactComponent } from './contact/contact.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { MsgBoxComponent } from './msg-box/msg-box.component';
 
 
@@ -41,7 +44,9 @@ const routes: Routes = [
   { path: 'primes', component: PrimesComponent },
   { path: 'saisie-notes', component: SaisieNoteComponent },
   { path: 'validation', component: ValidationMissionComponent },
+  { path:'modifiermission', component: ModifmissionComponent},
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
+
 ];
 
 
@@ -64,8 +69,9 @@ const routes: Routes = [
     VisualisationMissionComponent,
     DemandeMissionComponent,
     ModifMissionComponent,
-    MsgBoxComponent
-
+    MsgBoxComponent,
+    ContactComponent,
+    NavbarComponent
 
   ],
   imports: [

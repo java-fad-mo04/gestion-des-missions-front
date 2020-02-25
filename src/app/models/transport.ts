@@ -1,3 +1,4 @@
+
 /**
  * Transport.
  */
@@ -7,3 +8,4 @@ export class Transport {
     public libelle?: string
     ) {}
 }
+
