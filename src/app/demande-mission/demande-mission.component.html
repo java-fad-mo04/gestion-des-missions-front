@@ -1,1 +1,110 @@
 <app-menu></app-menu>
+<div class="row mt-3 justify-content-center">
+  <h1>Demande de mission</h1>
+</div>
+
+<div class="row justify-content-center mt-3">
+  <div class="card shadow bg-white rounded" style="width: 400px; max-width: 800px;">
+      <div class="card-body ">
+
+        <form #missionCreer="ngForm">
+              <div class="row align-items-center">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Date de début</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+                      <input class="form-control mb-1" type="date" name="dateDebut" [(ngModel)]="mission.dateDebut" required #dateDebut="ngModel" />
+                      <div [hidden]="dateDebut.valid || dateDebut.pristine" class="alert alert-danger">Veuillez saisir une date valide</div>
+                  </div>
+              </div>
+
+              <div class="row align-items-center">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Date de fin</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+                      <input class="form-control mb-1" type="date" name="dateFin" [(ngModel)]="mission.dateFin" required #dateFin="ngModel" placeholder="(Nature)"/>
+                      <div [hidden]="dateFin.valid || dateFin.pristine" class="alert alert-danger">Veuillez saisir une date valide</div>
+                  </div>
+              </div>
+
+              <div class="row align-items-center">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Nature</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+
+                      <select class="custom-select mb-1" name="nature" id="nature" [(ngModel)]="mission.nature" required #nature="ngModel">
+                        <option *ngFor="let nature of listeNatures" [ngValue]="nature">{{nature.libelle}}</option>
+                      </select>
+                      <div [hidden]="nature.valid || nature.pristine" class="alert alert-danger">Veuillez choisir une nature</div>
+
+                  </div>
+              </div>
+
+              <div class="row align-items-center">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Ville de départ</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+                    <input class="form-control mb-1" type="text" name="villeDepart" [(ngModel)]="mission.villeDepart" required #villeDepart="ngModel" />
+                    <div [hidden]="villeDepart.valid || villeDepart.pristine" class="alert alert-danger">Veuillez saisir une ville</div>
+                </div>
+              </div>
+
+              <div class="row align-items-center">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Ville d'arrivée</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+                    <input class="form-control mb-1" type="text" name="villeArrivee" [(ngModel)]="mission.villeArrivee" required #villeArrivee="ngModel" />
+                    <div [hidden]="villeArrivee.valid || villeArrivee.pristine" class="alert alert-danger">Veuillez saisir une ville</div>
+                </div>
+              </div>
+
+              <div class="row align-items-center">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Transport</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+                    <select class="custom-select mb-1" name="transport" id="transport" [(ngModel)]="mission.transport" required #transport="ngModel">
+                  <option *ngFor="let transport of listeTransport" [ngValue]="transport">{{transport.libelle}}</option>
+            </select>
+            <div [hidden]="transport.valid || transport.pristine" class="alert alert-danger">Veuillez choisir un transport</div>
+          </div>
+        </div>
+              <div class="row align-items-center mt-2 mb-2">
+                  <div class="col-5">
+                      <div class="row justify-content-end">
+                          <strong>Estimation prime</strong>
+                      </div>
+                  </div>
+                  <div class="col-7">
+
+                        <!--a ajouter-->
+
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-around m-1">
+
+                <button class="btn btn-danger" (click)="test()">Annuler</button>
+                <button [disabled]="missionCreer.invalid" class="btn btn-info" (click)="creer()">Créer</button>
+              </div>
+
+          </form>
+      </div>
+  </div>
+</div>
