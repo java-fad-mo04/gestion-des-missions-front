@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from './auth/auth.service';
-import {Router} from '@angular/router';
-import {Observable} from 'rxjs/internal/Observable';
-import {Collegue} from './auth/auth.domains';
+import {AuthService} from "./auth/auth.service";
+import {Router} from "@angular/router";
+import {Observable} from "rxjs/internal/Observable";
+import {Collegue} from "./auth/auth.domains";
+import {ModifmissionComponent} from "./modifmission/modifmission.component";
+
 
 /**
  * Composant principal de l'application.
@@ -11,6 +13,7 @@ import {Collegue} from './auth/auth.domains';
   selector: 'app-root',
   template: `<link rel="icon" type="image/x-icon" href="favicon.ico" /><router-outlet></router-outlet> `,
   styles: []
+
 })
 export class AppComponent implements OnInit {
 

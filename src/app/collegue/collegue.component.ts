@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {Observable} from 'rxjs/internal/Observable';
-import {Collegue} from '../auth/auth.domains';
-import {Router} from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { Collegue } from '../auth/auth.domains';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collegue',
