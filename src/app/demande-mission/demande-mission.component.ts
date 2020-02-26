@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 import { Mission } from '../models/mission';
 import { Nature } from '../models/nature';
@@ -22,9 +23,9 @@ export class DemandeMissionComponent implements OnInit {
   listeTransport: Transport[];
   transports: Observable<string[]>;
   collegue: Collegue;
-  mission = new Mission(0, new Date(), new Date(), null, '', '', null, '', null);
+  mission = new Mission(0, new Date(), new Date(), null, '', '', null, null, null);
 
-  constructor(private titleService: Title, private dataService: DataService, private _authSrv: AuthService) { }
+  constructor(private titleService: Title, private dataService: DataService, private _authSrv: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.titleService.setTitle( 'Demande de mission - GDM' );
@@ -43,6 +44,10 @@ export class DemandeMissionComponent implements OnInit {
   this.dataService.getTransport().subscribe(transports => {
     this.listeTransport = transports;
   }, (error) => {console.log(error)});
+  }
+
+  annuler() {
+    this.router.navigate([`gestion-mission`]);
   }
 
   creer() {

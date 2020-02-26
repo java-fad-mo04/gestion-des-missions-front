@@ -1,29 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TechComponent } from './tech/tech.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { Routes, RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { VisualisationNatureComponent } from './visualisation-nature/visualisation-nature.component';
-import { CreationNatureComponent } from './creation-nature/creation-nature.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
 
+import { AuthComponent } from './auth/auth.component';
+import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { CollegueComponent } from './collegue/collegue.component';
+import { CreationNatureComponent } from './creation-nature/creation-nature.component';
+import { VisualisationNatureComponent } from './visualisation-nature/visualisation-nature.component';
 import { PlanningMissionComponent } from './planning-mission/planning-mission.component';
 import { PrimesComponent } from './primes/primes.component';
 import { SaisieNoteComponent } from './saisie-note/saisie-note.component';
 import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
 import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
 import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
+import { TechComponent } from './tech/tech.component';
 import { ModifMissionComponent } from './modif-mission/modif-mission.component';
 
 

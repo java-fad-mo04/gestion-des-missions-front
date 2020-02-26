@@ -9,7 +9,7 @@ import {Collegue} from './auth/auth.domains';
  */
 @Component({
   selector: 'app-root',
-  template: `<link rel="icon" type="image/x-icon" href="favicon.png" /><router-outlet></router-outlet> `,
+  template: `<link rel="icon" type="image/x-icon" href="favicon.ico" /><router-outlet></router-outlet> `,
   styles: []
 })
 export class AppComponent implements OnInit {
