@@ -6,6 +6,8 @@ import { Mission } from '../models/Mission';
 import { Nature } from '../models/nature';
 import { Transport } from '../models/transport';
 
+const url = environment.baseUrl;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,18 +16,18 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
   getMissions(): Observable<Mission[]> {
-    return this.httpClient.get<Mission[]>(`${environment.baseUrl}mission`, {withCredentials: true});
+    return this.httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true});
   }
 
   addMission(mission: Mission): Observable<Mission>{
-    return this.httpClient.post<Mission>(`${environment.baseUrl}mission`, mission);
+    return this.httpClient.post<Mission>(`${url}mission`, mission, { responseType: 'text' as 'json' });
   }
 
   getNatures(): Observable<Nature[]> {
-    return this.httpClient.get<Nature[]>(`${environment.baseUrl}nature`, {withCredentials: true});
+    return this.httpClient.get<Nature[]>(`${url}nature`, {withCredentials: true});
 }
 
   getTransport(): Observable<Transport[]> {
-    return this.httpClient.get<Transport[]>(`${environment.baseUrl}transport`, {withCredentials: true});
+    return this.httpClient.get<Transport[]>(`${url}transport`, {withCredentials: true});
   }
 }
