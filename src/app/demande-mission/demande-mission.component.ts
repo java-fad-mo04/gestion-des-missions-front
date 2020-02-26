@@ -52,6 +52,6 @@ export class DemandeMissionComponent implements OnInit {
 
   creer() {
     this.mission.collegue = this.collegue;
-    this.dataService.addMission(this.mission).subscribe(() => {}, error => {console.log(error); });
+    this.dataService.addMission(this.mission).subscribe(() => {}, error => {console.log(error); })
   }
 }

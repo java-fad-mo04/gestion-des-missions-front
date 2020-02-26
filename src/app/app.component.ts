@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "./auth/auth.service";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs/internal/Observable";
-import {Collegue} from "./auth/auth.domains";
-import {ModifmissionComponent} from "./modifmission/modifmission.component";
-
+import {AuthService} from './auth/auth.service';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs/internal/Observable';
+import {Collegue} from './auth/auth.domains';
 
 /**
  * Composant principal de l'application.
