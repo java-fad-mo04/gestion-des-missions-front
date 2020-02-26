@@ -20,7 +20,7 @@ export class DataService {
   }
 
   addMission(mission: Mission): Observable<Mission>{
-    return this.httpClient.post<Mission>(`${url}mission`, mission, { responseType: 'text' as 'json' });
+    return this.httpClient.post<Mission>(`${url}mission`, mission,{withCredentials: true});
   }
 
   getNatures(): Observable<Nature[]> {

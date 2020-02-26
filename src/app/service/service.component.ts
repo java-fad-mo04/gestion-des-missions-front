@@ -20,10 +20,4 @@ export class DataService {
     return this.httpClient.get<Mission>(baseUrl + 'mission/' + id)
   }
 
-  changerMission(modif: Mission) {
-    return this.httpClient.patch<string>(baseUrl + 'mission', modif, {
-      responseType: 'text' as 'json'
-    });
-
-  }
 }
