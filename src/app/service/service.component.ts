@@ -19,5 +19,9 @@ export class DataService {
   rechercherParId(id: number): Observable<Mission> {
     return this.httpClient.get<Mission>(baseUrl + 'mission/' + id)
   }
-
+  changerMission(modif: Mission) {
+    return this.httpClient.patch<string>(baseUrl + 'mission', modif, {
+      responseType: 'text' as 'json'
+    });
+}
 }
