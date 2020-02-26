@@ -27,7 +27,7 @@ import { SaisieNoteComponent } from './saisie-note/saisie-note.component';
 import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
 import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
 import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
-import { ModifMissionComponent } from './modif-mission/modif-mission.component';
+import { ModifmissionComponent } from './modifmission/modifmission.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MsgBoxComponent } from './msg-box/msg-box.component';
@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'primes', component: PrimesComponent },
   { path: 'saisie-notes', component: SaisieNoteComponent },
   { path: 'validation', component: ValidationMissionComponent },
-  { path:'modifiermission', component: ModifmissionComponent},
+  { path: 'modifiermission', component: ModifmissionComponent},
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 
 ];
@@ -68,7 +68,7 @@ const routes: Routes = [
     ValidationMissionComponent,
     VisualisationMissionComponent,
     DemandeMissionComponent,
-    ModifMissionComponent,
+    ModifmissionComponent,
     MsgBoxComponent,
     ContactComponent,
     NavbarComponent
