@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav navbar-right">
-      <li>Bonjour, {{collegue.nom}}</li>
-      <a (click)="seDeconnecter()"><li>Se deconnecter</li></a>
-</ul>
+<div class="text-right">
+  <span class="text mr-4">Bonjour, {{(collegue|async).nom}}</span><br>
+  <button type="button" class="btn btn-link pull-right" (click)="seDeconnecter()" style="font-size : 13px;">Se déconnecter</button>
+</div>

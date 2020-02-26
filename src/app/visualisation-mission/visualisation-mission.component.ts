@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 
 import { DataService } from '../services/data.service';
+import { Collegue } from '../auth/auth.domains';
 
 import { Mission } from '../models/mission';
 
