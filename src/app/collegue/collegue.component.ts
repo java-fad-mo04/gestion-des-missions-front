@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {Collegue} from '../models/collegue';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-collegue',
   templateUrl: './collegue.component.html',

@@ -1,3 +1,4 @@
+
 /**
  * Nature de Mission.
  */
@@ -15,3 +16,4 @@ export class Nature {
   constructor() { }
 
 }
+

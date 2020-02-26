@@ -11,35 +11,38 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
 
+import { AcceuilComponent } from './acceuil/acceuil.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { AcceuilComponent } from './acceuil/acceuil.component';
 import { CollegueComponent } from './collegue/collegue.component';
 import { CreationNatureComponent } from './creation-nature/creation-nature.component';
-import { VisualisationNatureComponent } from './visualisation-nature/visualisation-nature.component';
+import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
+import { MenuComponent } from './menu/menu.component';
+import { ModifierNatureComponent } from './modifier-nature/modifier-nature.component';
+import { ModifmissionComponent } from './modifmission/modifmission.component';
+import { MsgBoxComponent } from './msg-box/msg-box.component';
 import { PlanningMissionComponent } from './planning-mission/planning-mission.component';
 import { PrimesComponent } from './primes/primes.component';
 import { SaisieNoteComponent } from './saisie-note/saisie-note.component';
+import { TechComponent } from './tech/tech.component';
 import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
 import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
-import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
-import { TechComponent } from './tech/tech.component';
-import { ModifMissionComponent } from './modif-mission/modif-mission.component';
-
+import { VisualisationNatureComponent } from './visualisation-nature/visualisation-nature.component';
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
-  { path: 'demande-mission', component: DemandeMissionComponent},
-  { path: 'acceuil', component: AcceuilComponent},
-  { path: 'gestion-mission', component: VisualisationMissionComponent},
-  { path: 'planning', component: PlanningMissionComponent},
-  { path: 'primes', component: PrimesComponent},
-  { path: 'saisie-notes', component: SaisieNoteComponent},
-  { path: 'validation', component: ValidationMissionComponent},
+  { path: 'demande-mission', component: DemandeMissionComponent },
+  { path: 'acceuil', component: AcceuilComponent },
+  { path: 'gestion-mission', component: VisualisationMissionComponent },
+  { path: 'planning', component: PlanningMissionComponent },
+  { path: 'primes', component: PrimesComponent },
+  { path: 'saisie-notes', component: SaisieNoteComponent },
+  { path: 'validation', component: ValidationMissionComponent },
+  { path: 'modifiermission', component: ModifmissionComponent},
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
+
 ];
 
 
@@ -51,6 +54,7 @@ const routes: Routes = [
     VisualisationNatureComponent,
     CreationNatureComponent,
     CreationNatureDirective,
+    ModifierNatureComponent,
     MenuComponent,
     AcceuilComponent,
     CollegueComponent,
@@ -60,7 +64,8 @@ const routes: Routes = [
     ValidationMissionComponent,
     VisualisationMissionComponent,
     DemandeMissionComponent,
-    ModifMissionComponent
+    ModifmissionComponent,
+    MsgBoxComponent
 
   ],
   imports: [
@@ -77,7 +82,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent]
+  entryComponents: [CreationNatureComponent, ModifierNatureComponent, MsgBoxComponent]
 
 })
 export class AppModule { }

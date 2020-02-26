@@ -3,8 +3,9 @@ import { VisualisationNatureService } from './visualisation-nature.service';
 import { Nature } from '../models/nature';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureComponent } from '../creation-nature/creation-nature.component';
+import { ModifierNatureComponent } from '../modifier-nature/modifier-nature.component';
 import { Title } from '@angular/platform-browser';
-
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-visualisation-nature',
@@ -22,8 +23,8 @@ import { Title } from '@angular/platform-browser';
       <th scope="col">Actions</th>
     </tr>
   </thead>
-  <tbody *ngFor="let nature of listeNature" >
-    <tr>
+  <tbody  >
+    <tr *ngFor="let nature of listeNature">
       <td>{{nature.libelle}}</td>
       <td *ngIf="nature.estFacture else facture">Oui</td>
 
@@ -34,16 +35,16 @@ import { Title } from '@angular/platform-browser';
 <ng-template #prime>
 <td>Non</td>
 </ng-template>
-      <td *ngIf="nature.tjm else tjm">{{nature.tjm}}</td>
+      <td *ngIf="nature.tjm != 0 else tjm">{{nature.tjm}}</td>
       <ng-template #tjm>
 <td>-</td>
 </ng-template>
-      <td *ngIf="nature.valeurPrime else valeurPrime">{{nature.valeurPrime}}</td>
+      <td *ngIf="nature.valeurPrime != 0 else valeurPrime">{{nature.valeurPrime}}</td>
       <ng-template #valeurPrime>
 <td>-</td>
 </ng-template>
       <td>
-      <img src="../assets/images/edit-symbol.png" width="20px">
+      <img src="../assets/images/edit-symbol.png" width="20px" (click)="openModifier(nature.id)">
 
       <img src="../assets/images/bin.png" width="20px" >
       </td>
@@ -83,10 +84,12 @@ export class VisualisationNatureComponent implements OnInit {
       backdropClass: 'customBackdrop'
     };
 
+
+
   }
 
   ngOnInit() {
-    this.titleService.setTitle( 'Gestion de missions - GDM' );
+    this.titleService.setTitle('Gestion de missions - GDM');
 
     this.visuServ.recuperationNature().subscribe((nature: Nature[]) => {
       this.listeNature = nature;
@@ -97,7 +100,23 @@ export class VisualisationNatureComponent implements OnInit {
     this.modalService.open(CreationNatureComponent);
   }
 
+  openModifier(id: number) {
 
+    let nat: Nature;
+
+
+    for (const nature of this.listeNature) {
+      if (nature.id === id) {
+
+        nat = nature;
+      }
+    }
+
+
+    const modal = this.modalService.open(ModifierNatureComponent);
+    modal.componentInstance.nature = nat;
+
+  }
 
 }
 
