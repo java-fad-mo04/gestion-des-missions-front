@@ -4,29 +4,27 @@ import {Router} from "@angular/router";
 import {Observable} from "rxjs/internal/Observable";
 import {Collegue} from "./auth/auth.domains";
 
+
 /**
  * Composant principal de l'application.
  */
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+
+  template: `<link rel="icon" type="image/x-icon" href="favicon.png" /><router-outlet></router-outlet> `,
+  styles: []
+
 })
 export class AppComponent implements OnInit {
 
-  collegueConnecte:Observable<Collegue>;
+  collegueConnecte: Observable<Collegue>;
 
-  constructor(private _authSrv:AuthService, private _router:Router) {
+  constructor(private _authSrv: AuthService, private _router: Router) {
 
   }
 
-  /**
-   * Action déconnecter collègue.
-   */
-  seDeconnecter() {
-    this._authSrv.seDeconnecter().subscribe(
-      value => this._router.navigate(['/auth'])
-    );
-  }
+
+
 
   /**
    * A l'initialisation, le composant s'abonne au flux du collègue courant connecté.
