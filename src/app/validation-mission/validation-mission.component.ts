@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Mission } from '../models/mission';
 
 @Component({
   selector: 'app-validation-mission',
@@ -8,6 +9,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ValidationMissionComponent implements OnInit {
 
+  validMission : Mission;
+  
   constructor(private titleService: Title) { }
 
   ngOnInit() {
