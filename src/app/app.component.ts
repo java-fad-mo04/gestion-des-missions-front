@@ -1,17 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "./auth/auth.service";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs/internal/Observable";
-import {Collegue} from "./auth/auth.domains";
-
+import {AuthService} from './auth/auth.service';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs/internal/Observable';
+import {Collegue} from './auth/auth.domains';
 
 /**
  * Composant principal de l'application.
  */
 @Component({
   selector: 'app-root',
-
-  template: `<link rel="icon" type="image/x-icon" href="favicon.png" /><router-outlet></router-outlet> `,
+  template: `<link rel="icon" type="image/x-icon" href="favicon.ico" /><router-outlet></router-outlet> `,
   styles: []
 
 })
