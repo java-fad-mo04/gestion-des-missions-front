@@ -110,7 +110,7 @@ export class ModifierNatureComponent implements OnInit {
 
   msgRetour: string;
 
-  constructor(public activeModal: NgbActiveModal, private _dataService: DataService, private modalService: NgbModal) {
+  constructor(public activeModal: NgbActiveModal, private _dataService: DataService, private _modalService: NgbModal) {
 
     this.modalOptions = {
       backdrop: 'static',
@@ -130,14 +130,14 @@ export class ModifierNatureComponent implements OnInit {
 
       this.msgRetour = msg;
       this.activeModal.close();
-      const modal = this.modalService.open(MsgBoxComponent);
+      const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
 
 
     }, error => {
       this.msgRetour = error.error;
       this.activeModal.close();
-      const modal = this.modalService.open(MsgBoxComponent);
+      const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
 
     });

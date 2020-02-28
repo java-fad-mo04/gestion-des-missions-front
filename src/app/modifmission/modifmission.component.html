@@ -6,7 +6,7 @@
   <div class="card shadow bg-white rounded" style="width: 400px; max-width: 800px;">
       <div class="card-body ">
 
-        <form #missionCreer="ngForm">
+        <form #missionCreer="ngForm" (ngSubmit)="onSubmit()" class="form form-create">
               <div class="row align-items-center">
                   <div class="col-5">
                       <div class="row justify-content-end">
@@ -38,10 +38,13 @@
                       </div>
                   </div>
                   <div class="col-7">
-                      <select class="custom-select mb-1" name="nature" id="nature" [(ngModel)]="mission.nature" required (ngModelChange)="onChange($event)"  #nature="ngModel">
-                        <option *ngFor="let nature of natures" [ngValue]="nature" >{{nature.libelle}}</option>
-                      </select>
+
+                    <select class="custom-select mb-1" name="nature" id="nature" [(ngModel)]="mission.nature" required #nature="ngModel"ng-readonly="isReadOnlyMode" ng-model-options="{updateOn: 'submit'}">
+                      <option *ngFor="let nature of natures" [ngValue]="nature">{{nature.libelle}}</option>
                       <div [hidden]="nature.valid || nature.pristine" class="alert alert-danger">Veuillez choisir une nature</div>
+                    </select>
+
+
                   </div>
               </div>
 
@@ -77,11 +80,11 @@
                   </div>
                   <div class="col-7">
                     <select class="custom-select mb-1" name="transport" id="transport" [(ngModel)]="mission.transport" required #transport="ngModel">
-                      <option *ngFor="let transport of transports" [ngValue]="transport">{{transport.libelle}}</option>
-                      <div [hidden]="transport.valid || transport.pristine" class="alert alert-danger">Veuillez choisir un transport</div>
-                    </select>
-                  </div>
-              </div>
+                  <option *ngFor="let transport of transports" [ngValue]="transport">{{transport.libelle}}</option>
+            </select>
+            <div [hidden]="transport.valid || transport.pristine" class="alert alert-danger">Veuillez choisir un transport</div>
+          </div>
+        </div>
               <div class="row align-items-center mt-2 mb-2">
                   <div class="col-5">
                       <div class="row justify-content-end">
@@ -89,17 +92,19 @@
                       </div>
                   </div>
                   <div class="col-7">
-                    <p> {{primes}} </p>
+
+                        <!--a ajouter-->
+
                 </div>
               </div>
 
               <div class="d-flex justify-content-around m-1">
 
                 <button class="btn btn-danger" (click)="annuler()">Annuler</button>
-                <button [disabled]="missionCreer.invalid" class="btn btn-info" (click)="creer()">Créer</button>
+                <button [disabled]="missionCreer.invalid" class="btn btn-info" (click)="modifMission()">Modifier</button>
               </div>
 
-      </form>
-    </div>
+          </form>
+      </div>
   </div>
 </div>
