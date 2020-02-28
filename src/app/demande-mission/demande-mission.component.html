@@ -38,7 +38,7 @@
                       </div>
                   </div>
                   <div class="col-7">
-                      <select class="custom-select mb-1" name="nature" id="nature" [(ngModel)]="mission.nature" required (ngModelChange)="onChange($event)"  #nature="ngModel">
+                      <select class="custom-select mb-1" name="nature" id="nature" [(ngModel)]="mission.nature" required (ngModelChange)="onChange()"  #nature="ngModel">
                         <option *ngFor="let nature of natures" [ngValue]="nature" >{{nature.libelle}}</option>
                       </select>
                       <div [hidden]="nature.valid || nature.pristine" class="alert alert-danger">Veuillez choisir une nature</div>
