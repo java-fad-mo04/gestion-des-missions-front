@@ -80,13 +80,12 @@
 
                             <!-- Bouton abandonner-->
                             <div class="col-md-5 text-right ">
-                                <button type="button" class="btn btn-danger mb-2"
-                                    (click)="abandonnerModif()">Annuler</button>
+                              <button type="button" class="btn btn-danger"  (click)="activeModal.close('Close click')">Annuler</button>
                             </div>
                             <!-- Bouton valider-->
                             <div class="col-md-6 text-left">
                                 <button type="button" class="btn btn-success mx-sm-3 mb-2"
-                                    [disabled]="etatForm.invalid " (click)="enregistrerModif()">Valider</button>
+                                    [disabled]="etatForm.invalid " (click)="modifMission()">Valider</button>
                             </div>
 
                         </form>

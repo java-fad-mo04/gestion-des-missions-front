@@ -1,89 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { DataService } from '../service/service.component';
+import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from '../services/data.service';
 import { Mission } from '../mission/Mission';
-import { Transport } from '../models/transport';
-import { Nature } from '../models/nature';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { MsgBoxComponent } from '../msg-box/msg-box.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-modifmission',
   templateUrl: './modifmission-component.html'
 })
 export class ModifmissionComponent implements OnInit {
-  isSubmitted = false;
-  rectiMission: Mission = {}
-  messageErreur: string;
-  messageOk: string;
-  listetransport: Transport[];
-  listenature: Nature[];
-  transportId: number;
-  natureId: number;
-  missionId : number;
 
-  constructor(private dataservice: DataService) { }
+  @Input() mission: Mission;
+  modalOptions: NgbModalOptions;
+  msgRetour: string;
 
-  ngOnInit(): void {
-    this.afficherMission(this.missionId);
-    this.recupNature();
-    this.recupTransport();
+  constructor(private _dataService: DataService, public activeModal: NgbActiveModal, private _modalService: NgbModal) {
+
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    };
   }
 
-  abandonnerModif() {
-
-    { console.log('Abandon des modifications') }
+  ngOnInit() {
   }
-  recupNature() {
-    this.dataservice.recupNature().subscribe((nature: Nature[]) => { this.listenature = nature; console.log(this.listenature) })
-
-  };
 
 
-  recupTransport() {
-    this.dataservice.recupTransport().subscribe((transport: Transport[]) => { this.listetransport = transport; console.log(this.listetransport) })
+  modifMission() {
 
-  };
+    this._dataService.modifierMission(this.mission).subscribe((msg: string) => {
 
-  afficherMission(idMission: number) {
-    this.messageErreur = null;
-    this.messageOk = null;
-    this.dataservice.rechercherParId(idMission)
-      .subscribe(
-        (mission: Mission) => {
-          this.rectiMission = mission;
-          this.messageOk = 'Veuillez modifier la mission';
-          console.log(mission)
-        },
-        error => {
-          this.messageErreur = `Erreur : Impossible d'afficher la mission`
+      this.msgRetour = msg;
+      this.activeModal.close();
+      const modal = this._modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
 
-        })
+    }, error => {
+      this.msgRetour = error.error;
+      this.activeModal.close();
+      const modal = this._modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
+
+    });
+
   }
-  enregistrerModif() {
-    this.messageErreur = null;
-    this.messageOk = null;
-    for (let transport of this.listetransport) {
-      if (transport.id === this.transportId) {
-        this.rectiMission.transport = transport;
 
-      }
-
-    } for (let nature of this.listenature) {
-      if (nature.id === this.natureId) {
-        this.rectiMission.transport = nature;
-
-      }
-    }
-    console.log(this.rectiMission);
-    this.dataservice.changerMission(this.rectiMission)
-      .subscribe(
-        message => {
-          this.messageOk = 'Les modifications ont bien été prises en compte';
-
-          console.log('Modification de la mission')},
-          error => {
-            this.messageErreur = `Erreur : Impossible de valider la mission`
-            console.log('Erreur')
-          })
-  }
 }
 

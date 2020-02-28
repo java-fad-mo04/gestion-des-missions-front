@@ -5,7 +5,7 @@ import { Nature } from '../models/nature';
 import { CreationNatureService } from './creation-nature.service';
 import { VisualisationNatureComponent } from '../visualisation-nature/visualisation-nature.component';
 import { MsgBoxComponent } from '../msg-box/msg-box.component';
-
+import { CommonModule } from '@angular/common';
 
 
 @Component({

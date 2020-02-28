@@ -13,10 +13,7 @@ import { Mission } from '../models/mission';
 })
 export class VisualisationMissionComponent implements OnInit {
 
-  isError: boolean;
   missions: Mission[];
-  mission: Mission;
-
 
   constructor(private titleService: Title, private dataService: DataService) { }
 
