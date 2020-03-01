@@ -3,8 +3,9 @@
   font-weight: bold;
   font-size: larger;
 }
-.navbar{
+.navbar, .header{
   background-color: #3361a5;
+  color: #ffffff ;
 }
 .btn.btn-link, .nav.navbar-nav.navbar-right{
   color: #ffffff ;
@@ -12,4 +13,11 @@
 p {
   margin: 0;
   padding: 0;
+}
+mdb-card {
+  height: 100vh;
+}
+.center{
+  width: 100%;
+  margin: 10px auto;
 }

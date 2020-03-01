@@ -39,7 +39,7 @@ export class DeleteMissionComponent implements OnInit {
       this.activeModal.close();
       const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
-      this.updateWin();
+      //this.updateWin();
     }, error => {
       this.msgRetour = error.error;
       this.activeModal.close();

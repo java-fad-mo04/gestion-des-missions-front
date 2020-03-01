@@ -4,6 +4,7 @@ import { Mission } from '../models/mission';
 import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { MsgBoxComponent } from '../msg-box/msg-box.component';
 import * as moment from 'moment';
+
 @Component({
   selector: 'app-view-mission',
   templateUrl: './view-mission.component.html',
@@ -28,9 +29,11 @@ export class ViewMissionComponent implements OnInit {
     let date2 = moment(this.mission.dateFin);
     let diffInDays = Math.abs(date1.diff(date2, 'days'));
     this.prime = this.mission.nature.valeurPrime * diffInDays * this.mission.nature.tjm/100;
-    console.log(diffInDays);
+
   }
 
-
+fermer(){
+  this.activeModal.close('Close click')
+}
 
 }

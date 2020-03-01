@@ -15,7 +15,7 @@ import {Collegue} from './auth/auth.domains';
 })
 export class AppComponent implements OnInit {
 
-  collegueConnecte: Observable<Collegue>;
+  collegue: Collegue;
 
   constructor(private _authSrv: AuthService, private _router: Router) {
 
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
    */
   ngOnInit(): void {
 
-    this.collegueConnecte = this._authSrv.collegueConnecteObs;
+    this._authSrv.collegueConnecteObs.subscribe(col => this.collegue = col);
   }
 
 }

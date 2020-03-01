@@ -69,7 +69,7 @@ export class DemandeMissionComponent implements OnInit {
       this.activeModal.close();
       const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
-
+      window.location.reload();
     }, error => {
       this.msgRetour = error.error;
       this.activeModal.close();

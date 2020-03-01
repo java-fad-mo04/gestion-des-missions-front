@@ -24,7 +24,7 @@ export class DataService {
   }
 
   addMission(mission: Mission){
-    return this._httpClient.post<string>(`${url}mission`, mission, {withCredentials: true});
+    return this._httpClient.post<string>(`${url}mission`, mission, {responseType: 'text' as 'json' });
   }
 
   modifierMission(mission: Mission) {
