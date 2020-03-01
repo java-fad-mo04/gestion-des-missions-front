@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-acceuil',
-  templateUrl: './acceuil.component.html',
+  selector: 'app-accueil',
+  templateUrl: './accueil.component.html',
   styles: []
 })
-export class AcceuilComponent implements OnInit {
+export class AccueilComponent implements OnInit {
 
   constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle( 'Acceuil - GDM' );
+    this.titleService.setTitle( 'Accueil - GDM' );
   }
 
 }
