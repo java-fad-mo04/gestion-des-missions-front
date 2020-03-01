@@ -35,7 +35,7 @@ import {Router} from '@angular/router';
         <form>
           <div class="md-form">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="text" [validateSuccess]="false" data-error="Une adresse email est requise" id="defaultForm-email" class="form-control" name="email" mdbInputDirective [(ngModel)]="collegue.email" placeholder="Email" required>
+<input type="text" [validateSuccess]="false" data-error="Une adresse email est requise" id="defaultForm-email" class="form-control" name="email" mdbInputDirective [(ngModel)]="collegue.email" placeholder="Email" required>
           </div>
 
           <div class="md-form">
@@ -62,7 +62,7 @@ export class AuthComponent implements OnInit {
   collegue: Collegue = new Collegue({});
   err: boolean;
 
-  constructor(private _authSrv:AuthService, private _router:Router) { }
+  constructor(private _authSrv: AuthService, private _router: Router) { }
 
   ngOnInit() {
   }
