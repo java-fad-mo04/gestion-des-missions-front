@@ -97,7 +97,6 @@ import { MsgBoxComponent } from '../msg-box/msg-box.component';
     <button type="button" class="btn btn-success"  [ngClass]="{'disabled': natureForm.invalid}" (click)="modifierNature()">Valider</button>
   </div>
 
-  {{nature.estFacture}} {{nature.estPrime}}
   `,
   styles: []
 })

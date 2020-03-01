@@ -31,6 +31,7 @@ import { ModifMissionComponent } from './modif-mission/modif-mission.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MsgBoxComponent } from './msg-box/msg-box.component';
+import { DeleteNatureComponent } from './delete-nature/delete-nature.component';
 
 
 const routes: Routes = [
@@ -44,7 +45,7 @@ const routes: Routes = [
   { path: 'primes', component: PrimesComponent },
   { path: 'saisie-notes', component: SaisieNoteComponent },
   { path: 'validation', component: ValidationMissionComponent },
-  { path:'modifiermission', component: ModifmissionComponent},
+  { path: 'modifiermission', component: ModifMissionComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 
 ];
@@ -71,7 +72,8 @@ const routes: Routes = [
     ModifMissionComponent,
     MsgBoxComponent,
     ContactComponent,
-    NavbarComponent
+    NavbarComponent,
+    DeleteNatureComponent
 
   ],
   imports: [
@@ -88,7 +90,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent, ModifierNatureComponent, MsgBoxComponent]
+  entryComponents: [CreationNatureComponent, ModifierNatureComponent, MsgBoxComponent, DeleteNatureComponent]
 
 })
 export class AppModule { }
