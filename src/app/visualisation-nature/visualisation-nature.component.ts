@@ -40,18 +40,9 @@ export class VisualisationNatureComponent implements OnInit {
     this._modalService.open(CreationNatureComponent);
   }
 
-  openModifier(id: number) {
-    let nat: Nature;
-    for (const nature of this.listeNature) {
-      if (nature.id === id) {
-
-        nat = nature;
-      }
-    }
-
   openDelete(nat: Nature) {
 
-    const modal = this.modalService.open(DeleteNatureComponent);
+    const modal = this._modalService.open(DeleteNatureComponent);
     modal.componentInstance.nature = nat;
   }
 

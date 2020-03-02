@@ -71,8 +71,8 @@ const routes: Routes = [
     ModifmissionComponent,
     MsgBoxComponent,
     DeleteMissionComponent,
-    ViewMissionComponent
-    DeleteNatureComponent,
+    ViewMissionComponent,
+    DeleteNatureComponent
   ],
   imports: [
     BrowserModule,
