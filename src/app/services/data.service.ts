@@ -17,7 +17,6 @@ export class DataService {
 
   natureSubject = new Subject<Nature[]>();
 
-
   constructor(private _httpClient: HttpClient) { }
   // Mission
   getMissions(): Observable<Mission[]> {
@@ -40,7 +39,12 @@ export class DataService {
     console.log(id);
     return this._httpClient.delete<string>(`${url}mission/${id}`, { responseType: 'text' as 'json' });
   }
-  //Nature
+
+  getMissionPrime(id: number, date: string) {
+    return this._httpClient.get<Mission[]>(`${url}mission/${id}/${date}`, { withCredentials: true });
+  }
+
+  // Nature
 
 
   emitListeNat() {
@@ -70,7 +74,7 @@ export class DataService {
     return this._httpClient.delete<string>(`${url}nature/${nature.id}`, { responseType: 'text' as 'json' });
 
   }
-  //Transport
+  // Transport
   getTransport(): Observable<Transport[]> {
     return this._httpClient.get<Transport[]>(`${url}transport`, { withCredentials: true });
   }
