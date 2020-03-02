@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs/internal/Observable';
-import {Collegue} from '../models/collegue';
+import {Collegue} from '../auth/auth.domains';
 import {Router} from '@angular/router';
 
 
@@ -16,7 +16,7 @@ export class CollegueComponent implements OnInit {
   constructor(private _authSrv: AuthService, private _router: Router) { }
 
   ngOnInit() {
-    this._authSrv.collegueConnecteObs.subscribe(col => this.collegue = col);
+    this._authSrv.verifierAuthentification().subscribe(col => this.collegue = col);
   }
 
   /**

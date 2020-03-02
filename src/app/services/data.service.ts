@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Mission } from '../models/mission';
 import { Nature } from '../models/nature';
 import { Transport } from '../models/transport';
+import {tap, catchError} from 'rxjs/operators';
 
 const url = environment.baseUrl;
 
@@ -12,7 +13,7 @@ const url = environment.baseUrl;
   providedIn: 'root'
 })
 export class DataService {
-
+  mission = new Subject<Mission>();
   constructor(private _httpClient: HttpClient) { }
 // Mission
   getMissions(): Observable<Mission[]> {
@@ -20,7 +21,11 @@ export class DataService {
   }
 
   getMission(id: number): Observable<Mission[]> {
-    return this._httpClient.get<Mission[]>(`${url}mission/${id}`, {withCredentials: true});
+    return this._httpClient.get<Mission[]>(`${url}mission/${id}`, {withCredentials: true}).pipe(
+      tap(miss => {
+        this.mission.next(miss);
+      })
+    );
   }
 
   addMission(mission: Mission){
