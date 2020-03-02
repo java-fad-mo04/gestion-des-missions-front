@@ -13,17 +13,18 @@ const url = environment.baseUrl;
   providedIn: 'root'
 })
 export class DataService {
-  missionSubject = new Subject<Mission>();
+  missionSubject = new Subject<Mission[]>();
+  missionList: Mission[];
   natureSubject = new Subject<Nature[]>();
   constructor(private _httpClient: HttpClient) { }
 
 // Mission
-  getMissions(): Observable<Mission[]> {
-    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true}).pipe(
-      tap(miss => {
-        this.missionSubject.next(miss);
-      })
-    );
+  getMissions() {
+    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true})
+    .subscribe((miss: Mission[]) => {
+      this.missionList = miss;
+        this.missionSubject.next(this.missionList);
+      });
   }
 
   getMission(id: number): Observable<Mission> {
@@ -42,6 +43,7 @@ export class DataService {
     console.log(id);
     return this._httpClient.delete<string>(`${url}mission/${id}`, {responseType: 'text' as 'json' });
   }
+
 //Nature
 emitListeNat() {
   let listeNat: Nature[];
