@@ -1,6 +1,9 @@
 <app-menu></app-menu>
 
-<div class="row mt-5">
+<div class="row mt-5"></div>
+
+<div class="row mb-3 justify-content-center">
+  <h2>Demande de mission</h2>
 </div>
 
 <div class="table-responsive">
@@ -19,9 +22,7 @@
         </tr>
     </thead>
     <tbody>
-     <!--<tr ng-repeat="mission in missions"> -->
-
-        <tr *ngFor="let mission of missions">
+      <tr *ngFor="let mission of missions">
         <td>{{mission.dateDebut| date: 'shortDate'}}</td>
         <td>{{mission.dateFin | date: 'shortDate'}}</td>
         <td>{{mission.nature.libelle}}</td>
@@ -30,17 +31,17 @@
         <td>{{mission.transport.libelle}}</td>
         <td>{{mission.status}}</td>
         <td align="right">
-          <a routerLink="/"><img class="mr-3" src="../../assets/images/eye.svg" *ngIf="mission.status == 'VALIDEE'" width="20" alt="view"></a>
-          <a routerLink="/modif-mission"><img class="mr-3" src="../../assets/images/pencil.svg" *ngIf="mission.status == 'INITIALE'" width="20" alt="edit"></a>
-          <a><img src="../../assets/images/trash.svg" width="20" alt="delete"></a>
-
+          <a (click)="openView(mission.id)"><img src="../../assets/images/eye.svg" *ngIf="mission.status == 'VALIDEE'" width="20" alt="view"></a>
+          <a (click)="openEdit(mission.id)"><img class="mr-3" src="../../assets/images/pencil.svg" *ngIf="mission.status == 'INITIALE'" width="20" alt="edit"></a>
+          <a (click)="openDelete(mission.id)"><img src="../../assets/images/trash.svg" *ngIf="mission.status != 'VALIDEE'" width="20" alt="delete"></a>
         </td>
-        </tr>
+      </tr>
     </tbody>
-</table>
+  </table>
 </div>
+
 <div class="row mt-2">
-<div class="col-12 text-right">
-  Demander une mission <button class="btn btn-dark" routerLink="/demande-mission">+</button>
-</div>
+  <div class="col-12 text-right">
+    Demander une mission <button class="btn btn-dark" (click)="openCreate()">+</button>
+  </div>
 </div>

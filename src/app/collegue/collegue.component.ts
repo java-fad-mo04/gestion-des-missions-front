@@ -16,7 +16,7 @@ export class CollegueComponent implements OnInit {
   constructor(private _authSrv: AuthService, private _router: Router) { }
 
   ngOnInit() {
-    this._authSrv.collegueConnecteObs.subscribe(col => this.collegue=col);
+    this._authSrv.collegueConnecteObs.subscribe(col => this.collegue = col);
   }
 
   /**

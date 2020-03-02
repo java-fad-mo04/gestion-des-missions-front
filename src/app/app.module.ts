@@ -11,7 +11,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
 
-import { AcceuilComponent } from './acceuil/acceuil.component';
+import { AccueilComponent } from './accueil/acceuil.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppComponent } from './app.component';
 import { CollegueComponent } from './collegue/collegue.component';
@@ -29,6 +29,8 @@ import { DemandeMissionComponent } from './demande-mission/demande-mission.compo
 import { MsgBoxComponent } from './msg-box/msg-box.component';
 import { DeleteNatureComponent } from './delete-nature/delete-nature.component';
 import { VisualisationNatureComponent } from './visualisation-nature/visualisation-nature.component';
+import { DeleteMissionComponent } from './delete-mission/delete-mission.component';
+import { ViewMissionComponent } from './view-mission/view-mission.component';
 
 
 const routes: Routes = [
@@ -36,7 +38,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
   { path: 'demande-mission', component: DemandeMissionComponent },
-  { path: 'acceuil', component: AcceuilComponent },
+  { path: 'acceuil', component: AccueilComponent },
   { path: 'gestion-mission', component: VisualisationMissionComponent },
   { path: 'planning', component: PlanningMissionComponent },
   { path: 'primes', component: PrimesComponent },
@@ -58,7 +60,7 @@ const routes: Routes = [
     CreationNatureDirective,
     ModifierNatureComponent,
     MenuComponent,
-    AcceuilComponent,
+    AccueilComponent,
     CollegueComponent,
     PlanningMissionComponent,
     PrimesComponent,
@@ -68,9 +70,9 @@ const routes: Routes = [
     DemandeMissionComponent,
     ModifmissionComponent,
     MsgBoxComponent,
-    DeleteNatureComponent,
-    MsgBoxComponent
-
+    DeleteMissionComponent,
+    ViewMissionComponent,
+    DeleteNatureComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,10 @@ const routes: Routes = [
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    NgbModule
+    NgbModule,
+    RouterModule.forRoot(routes,
+      { enableTracing: true } // <-- debugging
+    )
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -86,7 +91,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent, ModifierNatureComponent, MsgBoxComponent, DeleteNatureComponent]
-
+  entryComponents: [CreationNatureComponent, ModifierNatureComponent, DeleteNatureComponent,
+    DemandeMissionComponent, DeleteMissionComponent, ModifmissionComponent,ViewMissionComponent, MsgBoxComponent]
 })
 export class AppModule { }

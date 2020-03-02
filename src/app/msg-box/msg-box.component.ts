@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-msg-box',
-  templateUrl: '../msg-box/msg-box.component.html',
+  templateUrl: './msg-box.component.html',
   styles: []
 })
 export class MsgBoxComponent implements OnInit {

@@ -1,0 +1,57 @@
+<app-menu></app-menu>
+
+<div class="row mt-5"></div>
+
+<div class="row mb-3 justify-content-center">
+  <h2>Gestion des natures</h2>
+</div>
+
+<div class="table-responsive">
+ <table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nature</th>
+      <th scope="col">Facturée</th>
+      <th scope="col">Prime</th>
+      <th scope="col">TJM (€)</th>
+      <th scope="col">% Prime</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let nature of listeNature">
+      <td>{{nature.libelle}}</td>
+      <td *ngIf="nature.estFacture else facture">Oui</td>
+      <ng-template #facture>
+        <td>Non</td>
+      </ng-template>
+
+      <td *ngIf="nature.estPrime else prime">Oui</td>
+        <ng-template #prime>
+      <td>Non</td>
+        </ng-template>
+          <td *ngIf="nature.tjm != 0 else tjm">{{nature.tjm}}</td>
+        <ng-template #tjm>
+          <td>-</td>
+        </ng-template>
+      <td *ngIf="nature.valeurPrime != 0 else valeurPrime">{{nature.valeurPrime}}</td>
+        <ng-template #valeurPrime>
+          <td>-</td>
+        </ng-template>
+      <td align="right">
+        <img class="mr-3" src="../../assets/images/pencil.svg" (click)="openModifier(nature.id)" width="20px" alt="edit">
+        <img src="../../assets/images/trash.svg" width="20px" alt="delete">
+      </td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+<div class="row mt-2">
+  <div class="col-12 text-right">
+    Ajouter une nature de mission
+      <button type="button" class="btn btn-dark" (click)="openCreate()">+</button>
+  </div>
+</div>
+{{msgRetour}}
