@@ -4,6 +4,8 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureComponent } from '../creation-nature/creation-nature.component';
 import { ModifierNatureComponent } from '../modifier-nature/modifier-nature.component';
 import { Title } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
+import { DeleteNatureComponent } from '../delete-nature/delete-nature.component';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -12,8 +14,6 @@ import { DataService } from '../services/data.service';
   styles: []
 })
 export class VisualisationNatureComponent implements OnInit {
-
-
   modalOptions: NgbModalOptions;
   msgRetour: string;
 
@@ -49,6 +49,14 @@ export class VisualisationNatureComponent implements OnInit {
       }
     }
 
+  openDelete(nat: Nature) {
+
+    const modal = this.modalService.open(DeleteNatureComponent);
+    modal.componentInstance.nature = nat;
+  }
+
+
+  openModifier(nat: Nature) {
 
     const modal = this._modalService.open(ModifierNatureComponent);
     modal.componentInstance.nature = nat;

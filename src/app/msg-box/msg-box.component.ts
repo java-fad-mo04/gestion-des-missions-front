@@ -12,8 +12,6 @@ export class MsgBoxComponent implements OnInit {
 
   @Input() msg: string;
 
-
-
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal) { }
 
   ngOnInit() {
