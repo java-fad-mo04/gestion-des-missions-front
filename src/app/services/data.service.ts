@@ -47,7 +47,6 @@ export class DataService {
     let listeNat: Nature[];
     this.getNatures().subscribe((arg: Nature[]) => {
       listeNat = arg;
-      console.log(listeNat);
       this.natureSubject.next(listeNat);
     });
   }
