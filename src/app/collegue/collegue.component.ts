@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Observable } from 'rxjs/internal/Observable';
-import { Collegue } from '../auth/auth.domains';
-import { Router } from '@angular/router';
+import {AuthService} from '../auth/auth.service';
+import {Observable} from 'rxjs/internal/Observable';
+import {Collegue} from '../models/collegue';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-collegue',
@@ -10,12 +11,12 @@ import { Router } from '@angular/router';
   styles: []
 })
 export class CollegueComponent implements OnInit {
-  collegue: Observable<Collegue>;
+  collegue: Collegue;
 
   constructor(private _authSrv: AuthService, private _router: Router) { }
 
   ngOnInit() {
-    this.collegue = this._authSrv.collegueConnecteObs;
+    this._authSrv.collegueConnecteObs.subscribe(col => this.collegue = col);
   }
 
   /**

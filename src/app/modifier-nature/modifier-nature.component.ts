@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Nature } from '../models/nature';
 import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { ModifierNatureService } from './modifier-nature.service';
+import { DataService } from '../services/data.service';
 import { MsgBoxComponent } from '../msg-box/msg-box.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-modifier-nature',
@@ -96,8 +97,6 @@ import { MsgBoxComponent } from '../msg-box/msg-box.component';
     <button type="button" class="btn btn-danger"  (click)="activeModal.close('Close click')">Annuler</button>
     <button type="button" class="btn btn-success"  [ngClass]="{'disabled': natureForm.invalid}" (click)="modifierNature()">Valider</button>
   </div>
-
-  {{nature.estFacture}} {{nature.estPrime}}
   `,
   styles: []
 })
@@ -111,7 +110,7 @@ export class ModifierNatureComponent implements OnInit {
 
   msgRetour: string;
 
-  constructor(public activeModal: NgbActiveModal, private dataServ: ModifierNatureService, private modalService: NgbModal) {
+  constructor(public activeModal: NgbActiveModal, private _dataService: DataService, private _modalService: NgbModal) {
 
     this.modalOptions = {
       backdrop: 'static',
@@ -127,18 +126,18 @@ export class ModifierNatureComponent implements OnInit {
 
   modifierNature() {
 
-    this.dataServ.modifierNature(this.nature).subscribe((msg: string) => {
+    this._dataService.modifierNature(this.nature).subscribe((msg: string) => {
 
       this.msgRetour = msg;
       this.activeModal.close();
-      const modal = this.modalService.open(MsgBoxComponent);
+      const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
 
 
     }, error => {
       this.msgRetour = error.error;
       this.activeModal.close();
-      const modal = this.modalService.open(MsgBoxComponent);
+      const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
 
     });

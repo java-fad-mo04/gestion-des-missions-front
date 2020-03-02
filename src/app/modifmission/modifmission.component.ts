@@ -1,89 +1,82 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { DataService } from '../service/service.component';
+import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from '../services/data.service';
 import { Mission } from '../models/mission';
-import { Transport } from '../models/transport';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { MsgBoxComponent } from '../msg-box/msg-box.component';
+import { CommonModule } from '@angular/common';
 import { Nature } from '../models/nature';
+import { Transport } from '../models/transport';
 
 @Component({
   selector: 'app-modifmission',
-  templateUrl: './modifmission-component.html'
+  templateUrl: './modifmission.component.html'
 })
 export class ModifmissionComponent implements OnInit {
-  isSubmitted = false;
-  rectiMission: Mission = {}
-  messageErreur: string;
-  messageOk: string;
-  listetransport: Transport[];
-  listenature: Nature[];
-  transportId: number;
-  natureId: number;
-  missionId : number;
 
-  constructor(private dataservice: DataService) { }
+  @Input() mission: Mission;
+  modalOptions: NgbModalOptions;
+  msgRetour: string;
+  submitted = false;
+  natures:  Nature[];
+  transports: Transport[];
 
-  ngOnInit(): void {
-    this.afficherMission(1);
-    this.recupNature();
-    this.recupTransport();
+  constructor(private _dataService: DataService, public activeModal: NgbActiveModal, private _modalService: NgbModal) {
+
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    };
   }
 
-  abandonnerModif() {
+  ngOnInit() {
+    this._dataService.getNatures().subscribe(nats => {
+      this.natures = nats;
+    }, (error) => {
+      console.log(error);
+    });
 
-    { console.log('Abandon des modifications') }
+    this._dataService.getTransport().subscribe(trs => {
+      this.transports = trs;
+    }, (error) => {
+      console.log(error);
+    });
   }
-  recupNature() {
-    this.dataservice.recupNature().subscribe((nature: Nature[]) => { this.listenature = nature; console.log(this.listenature) })
 
-  };
-
-
-  recupTransport() {
-    this.dataservice.recupTransport().subscribe((transport: Transport[]) => { this.listetransport = transport; console.log(this.listetransport) })
-
-  };
-
-  afficherMission(idMission: number) {
-    this.messageErreur = null;
-    this.messageOk = null;
-    this.dataservice.rechercherParId(idMission)
-      .subscribe(
-        (mission: Mission) => {
-          this.rectiMission = mission;
-          this.messageOk = 'Veuillez modifier la mission';
-          console.log(mission)
-        },
-        error => {
-          this.messageErreur = `Erreur : Impossible d'afficher la mission`
-
-        })
+  onSubmit() {
+    this.submitted = true;
   }
-  enregistrerModif() {
-    this.messageErreur = null;
-    this.messageOk = null;
-    for (let transport of this.listetransport) {
-      if (transport.id === this.transportId) {
-        this.rectiMission.transport = transport;
 
-      }
-
-    } for (let nature of this.listenature) {
-      if (nature.id === this.natureId) {
-        this.rectiMission.transport = nature;
-
-      }
+  /*$scope.flipBetweenEditMode = function (isReadOnlyMode) {
+    if (!isReadOnlyMode) {
+        $scope.EditUserForm.$rollbackViewValue();
     }
-    console.log(this.rectiMission);
-    this.dataservice.changerMission(this.rectiMission)
-      .subscribe(
-        message => {
-          this.messageOk = 'Les modifications ont bien été prises en compte';
+    console.log(isReadOnlyMode);
+    $scope.isReadOnlyMode = !isReadOnlyMode;
+};*/
 
-          console.log('Modification de la mission')},
-          error => {
-            this.messageErreur = `Erreur : Impossible de valider la mission`
-            console.log('Erreur')
-          })
+
+  annuler() {
+    this.activeModal.close('Close click');
   }
+
+  modifMission() {
+
+    this._dataService.modifierMission(this.mission).subscribe((msg: string) => {
+
+      this.msgRetour = msg;
+      this.activeModal.close();
+      const modal = this._modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
+
+    }, error => {
+      this.msgRetour = error.error;
+      this.activeModal.close();
+      const modal = this._modalService.open(MsgBoxComponent);
+      modal.componentInstance.msg = this.msgRetour;
+
+    });
+
+  }
+
 }
 

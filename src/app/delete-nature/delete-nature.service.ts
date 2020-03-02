@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Nature } from '../models/nature';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 
 const url = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModifierNatureService {
+export class DeleteNatureService {
 
   constructor(private _http: HttpClient) { }
 
+  deleteNature(nature: Nature) {
 
-  modifierNature(nature: Nature) {
-
-    return this._http.patch<string>(`${url}nature`, nature, { responseType: 'text' as 'json' });
+    return this._http.delete<string>(`${url}nature/${nature.id}`, { responseType: 'text' as 'json' });
 
   }
+
 }

@@ -1,0 +1,100 @@
+
+<div class="row mt-3 justify-content-center">
+  <h2>Mission</h2>
+</div>
+
+<div class="row justify-content-center mt-3 mb-4">
+  <div class="card shadow bg-white rounded">
+      <div class="card-body ">
+
+        <div class="row align-items-center">
+            <div class="col-5">
+                <div class="row justify-content-end">
+                  <strong>Date de début</strong>
+                </div>
+            </div>
+            <div class="col-7">
+                <p>{{mission.dateDebut}}</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col-5">
+              <div class="row justify-content-end">
+                <p> <strong>Date de fin</strong></p>
+              </div>
+          </div>
+          <div class="col-7">
+              <p>{{mission.dateFin}}</p>
+          </div>
+        </div>
+
+      <div class="row align-items-center">
+        <div class="col-5">
+            <div class="row justify-content-end">
+              <p> <strong>Nature</strong> </p>
+            </div>
+        </div>
+        <div class="col-7">
+            <p>{{mission.nature.libelle}}</p>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-5">
+            <div class="row justify-content-end">
+                <p><strong>TJM (€)</strong></p>
+            </div>
+        </div>
+        <div class="col-7">
+            <p *ngIf="mission.nature.estFacture">{{mission.nature.tjm}}</p>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-5">
+            <div class="row justify-content-end">
+                <p><strong>Prime</strong></p>
+            </div>
+        </div>
+        <div class="col-7">
+            <p *ngIf="mission.nature.estPrime">{{prime}}</p>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-5">
+            <div class="row justify-content-end">
+              <p>  <strong>Ville de départ</strong></p>
+            </div>
+        </div>
+        <div class="col-7">
+            <p>{{mission.villeDepart}}</p>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="col-5">
+            <div class="row justify-content-end">
+              <p>  <strong>Ville d'arrivée</strong></p>
+            </div>
+        </div>
+        <div class="col-7">
+            <p>{{mission.villeArrivee}}</p>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-5">
+            <div class="row justify-content-end">
+              <p>  <strong>Transport</strong></p>
+            </div>
+        </div>
+        <div class="col-7">
+            <p>{{mission.transport.libelle}}</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around mt-3 mb-3">
+        <button class="btn btn-primary" (click)="fermer()">Fermer</button>
+      </div>
+    </div>
+  </div>

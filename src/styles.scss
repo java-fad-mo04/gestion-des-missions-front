@@ -3,10 +3,28 @@
   font-weight: bold;
   font-size: larger;
 }
-.navbar{
+.navbar, .header{
   background-color: #3361a5;
-}
-.btn.btn-link, .text.mr-2 {
   color: #ffffff ;
 }
-
+.btn.btn-link, .nav.navbar-nav.navbar-right{
+  color: #ffffff ;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+mdb-card {
+  height: 100vh;
+}
+.center{
+  width: 100%;
+  margin: 10px auto;
+}
+.card.shadow.bg-white.rounded{
+  width: 320px;
+  max-width: 800px;
+}
+.headings{
+  text-align: center;
+}

@@ -63,7 +63,6 @@ const routes: Routes = [
     DemandeMissionComponent,
     ModifmissionComponent,
     MsgBoxComponent
-
   ],
   imports: [
     BrowserModule,
@@ -71,7 +70,10 @@ const routes: Routes = [
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    NgbModule
+    NgbModule,
+    RouterModule.forRoot(routes,
+      { enableTracing: true } // <-- debugging
+    )
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -79,7 +81,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent, ModifierNatureComponent, MsgBoxComponent]
-
+  entryComponents: [CreationNatureComponent, ModifierNatureComponent, 
+    DemandeMissionComponent, ModifmissionComponent, MsgBoxComponent]
 })
 export class AppModule { }
