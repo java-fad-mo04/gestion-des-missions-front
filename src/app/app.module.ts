@@ -8,23 +8,28 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
-import { AccueilComponent } from './accueil/accueil.component';
+
+import { AccueilComponent } from './accueil/acceuil.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppComponent } from './app.component';
 import { CollegueComponent } from './collegue/collegue.component';
 import { CreationNatureComponent } from './creation-nature/creation-nature.component';
-import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
 import { MenuComponent } from './menu/menu.component';
 import { ModifierNatureComponent } from './modifier-nature/modifier-nature.component';
 import { ModifmissionComponent } from './modifmission/modifmission.component';
-import { MsgBoxComponent } from './msg-box/msg-box.component';
 import { PlanningMissionComponent } from './planning-mission/planning-mission.component';
 import { PrimesComponent } from './primes/primes.component';
 import { SaisieNoteComponent } from './saisie-note/saisie-note.component';
 import { TechComponent } from './tech/tech.component';
 import { ValidationMissionComponent } from './validation-mission/validation-mission.component';
 import { VisualisationMissionComponent } from './visualisation-mission/visualisation-mission.component';
+import { DemandeMissionComponent } from './demande-mission/demande-mission.component';
+import { MsgBoxComponent } from './msg-box/msg-box.component';
+import { DeleteNatureComponent } from './delete-nature/delete-nature.component';
 import { VisualisationNatureComponent } from './visualisation-nature/visualisation-nature.component';
+import { DeleteMissionComponent } from './delete-mission/delete-mission.component';
+import { ViewMissionComponent } from './view-mission/view-mission.component';
+
 
 const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
@@ -37,7 +42,7 @@ const routes: Routes = [
   { path: 'primes', component: PrimesComponent },
   { path: 'saisie-notes', component: SaisieNoteComponent },
   { path: 'validation', component: ValidationMissionComponent },
-  { path: 'modifiermission', component: ModifmissionComponent},
+  { path: 'modifiermission', component: ModifmissionComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 
 ];
@@ -62,7 +67,10 @@ const routes: Routes = [
     VisualisationMissionComponent,
     DemandeMissionComponent,
     ModifmissionComponent,
-    MsgBoxComponent
+    MsgBoxComponent,
+    DeleteMissionComponent,
+    ViewMissionComponent,
+    DeleteNatureComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +89,7 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [CreationNatureComponent, ModifierNatureComponent, 
-    DemandeMissionComponent, ModifmissionComponent, MsgBoxComponent]
+  entryComponents: [CreationNatureComponent, ModifierNatureComponent, DeleteNatureComponent,
+    DemandeMissionComponent, DeleteMissionComponent, ModifmissionComponent,ViewMissionComponent, MsgBoxComponent]
 })
 export class AppModule { }
