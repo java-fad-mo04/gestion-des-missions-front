@@ -16,6 +16,7 @@ export class DataService {
   missionSubject = new Subject<Mission[]>();
   missionList: Mission[];
   natureSubject = new Subject<Nature[]>();
+
   constructor(private _httpClient: HttpClient) { }
 
 // Mission
@@ -41,17 +42,22 @@ export class DataService {
 
   deleteMission(id: number) {
     console.log(id);
-    return this._httpClient.delete<string>(`${url}mission/${id}`, {responseType: 'text' as 'json' });
+    return this._httpClient.delete<string>(`${url}mission/${id}`, { responseType: 'text' as 'json' });
   }
 
-//Nature
-emitListeNat() {
-  let listeNat: Nature[];
-  this.getNatures().subscribe((arg: Nature[]) => {
-    listeNat = arg;
-    this.natureSubject.next(listeNat);
-  });
-}
+  getMissionPrime(id: number, date: string) {
+    return this._httpClient.get<Mission[]>(`${url}mission/${id}/${date}`, { withCredentials: true });
+  }
+
+  // Nature
+
+  emitListeNat() {
+    let listeNat: Nature[];
+    this.getNatures().subscribe((arg: Nature[]) => {
+      listeNat = arg;
+      this.natureSubject.next(listeNat);
+    });
+  }
   getNatures(): Observable<Nature[]> {
     return this._httpClient.get<Nature[]>(`${url}nature`, {withCredentials: true});
   }
@@ -68,7 +74,8 @@ emitListeNat() {
     return this._httpClient.delete<string>(`${url}nature/${nature.id}`, { responseType: 'text' as 'json' });
 
   }
-//Transport
+  // Transport
+
   getTransport(): Observable<Transport[]> {
     return this._httpClient.get<Transport[]>(`${url}transport`, {withCredentials: true});
   }
