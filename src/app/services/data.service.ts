@@ -65,6 +65,12 @@ export class DataService {
   modifierNature(nature: Nature) {
     return this._httpClient.patch<string>(`${url}nature`, nature, { responseType: 'text' as 'json' });
   }
+
+  deleteNature(nature: Nature) {
+
+    return this._httpClient.delete<string>(`${url}nature/${nature.id}`, { responseType: 'text' as 'json' });
+
+  }
   //Transport
   getTransport(): Observable<Transport[]> {
     return this._httpClient.get<Transport[]>(`${url}transport`, { withCredentials: true });
