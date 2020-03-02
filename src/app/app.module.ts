@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Routes, RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
@@ -35,14 +39,12 @@ const routes: Routes = [
   { path: 'tech', component: TechComponent, canActivate: [StatutConnecteService] }, // /tech accessible uniquement si connecté
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
-  { path: 'demande-mission', component: DemandeMissionComponent },
   { path: 'accueil', component: AccueilComponent },
   { path: 'gestion-mission', component: VisualisationMissionComponent },
   { path: 'planning', component: PlanningMissionComponent },
   { path: 'primes', component: PrimesComponent },
   { path: 'saisie-notes', component: SaisieNoteComponent },
   { path: 'validation', component: ValidationMissionComponent },
-  { path: 'modifiermission', component: ModifmissionComponent },
   { path: '', redirectTo: '/auth', pathMatch: 'full' }
 
 ];
@@ -81,7 +83,12 @@ const routes: Routes = [
     NgbModule,
     RouterModule.forRoot(routes,
       { enableTracing: true } // <-- debugging
-    )
+    ),
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
