@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">Confirmation de suppression d'une nature de mission</h4>
+</div>
+<div class="modal-body">
+
+  <p>Confirmez-vous la supression de la nature de mission {{nature.libelle}}</p>
+
+</div>
+
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger"  (click)="activeModal.close('Close click')">Annuler</button>
+  <button type="button" class="btn btn-success"   (click)="deleteNature()">Valider</button>
+</div>

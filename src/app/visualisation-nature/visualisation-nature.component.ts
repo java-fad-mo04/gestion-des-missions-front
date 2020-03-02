@@ -6,6 +6,7 @@ import { CreationNatureComponent } from '../creation-nature/creation-nature.comp
 import { ModifierNatureComponent } from '../modifier-nature/modifier-nature.component';
 import { Title } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
+import { DeleteNatureComponent } from '../delete-nature/delete-nature.component';
 
 @Component({
   selector: 'app-visualisation-nature',
@@ -44,9 +45,9 @@ import { Subject } from 'rxjs';
 <td>-</td>
 </ng-template>
       <td>
-      <img src="../assets/images/edit-symbol.png" width="20px" (click)="openModifier(nature.id)">
+      <img src="../assets/images/edit-symbol.png" width="20px" (click)="openModifier(nature)">
 
-      <img src="../assets/images/bin.png" width="20px" >
+      <img src="../assets/images/bin.png" (click)="openDelete(nature)" width="20px" >
       </td>
     </tr>
   </tbody>
@@ -100,18 +101,13 @@ export class VisualisationNatureComponent implements OnInit {
     this.modalService.open(CreationNatureComponent);
   }
 
-  openModifier(id: number) {
+  openDelete(nat: Nature) {
 
-    let nat: Nature;
+    const modal = this.modalService.open(DeleteNatureComponent);
+    modal.componentInstance.nature = nat;
+  }
 
-
-    for (const nature of this.listeNature) {
-      if (nature.id === id) {
-
-        nat = nature;
-      }
-    }
-
+  openModifier(nat: Nature) {
 
     const modal = this.modalService.open(ModifierNatureComponent);
     modal.componentInstance.nature = nat;
