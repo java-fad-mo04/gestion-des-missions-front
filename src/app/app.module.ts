@@ -5,13 +5,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Routes, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
 import { StatutConnecteService } from './auth/statut-connecte.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-
 import { CreationNatureDirective } from './creation-nature/creation-nature.directive';
 
-import { AccueilComponent } from './accueil/acceuil.component';
+import { AccueilComponent } from './accueil/accueil.component';
 import { AuthComponent } from './auth/auth.component';
 import { AppComponent } from './app.component';
 import { CollegueComponent } from './collegue/collegue.component';
@@ -38,7 +36,7 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'nature', component: VisualisationNatureComponent },
   { path: 'demande-mission', component: DemandeMissionComponent },
-  { path: 'acceuil', component: AccueilComponent },
+  { path: 'accueil', component: AccueilComponent },
   { path: 'gestion-mission', component: VisualisationMissionComponent },
   { path: 'planning', component: PlanningMissionComponent },
   { path: 'primes', component: PrimesComponent },
@@ -92,6 +90,6 @@ const routes: Routes = [
   }],
   bootstrap: [AppComponent],
   entryComponents: [CreationNatureComponent, ModifierNatureComponent, DeleteNatureComponent,
-    DemandeMissionComponent, DeleteMissionComponent, ModifmissionComponent,ViewMissionComponent, MsgBoxComponent]
+    DemandeMissionComponent, DeleteMissionComponent, ModifmissionComponent, ViewMissionComponent, MsgBoxComponent]
 })
 export class AppModule { }

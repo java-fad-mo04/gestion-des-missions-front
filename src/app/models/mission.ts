@@ -2,7 +2,7 @@
  * Mission.
  */
 import { Nature } from './nature';
-import { Collegue } from './collegue';
+import { Collegue } from '../auth/auth.domains';
 import { Transport } from './transport';
 
 export class Mission {

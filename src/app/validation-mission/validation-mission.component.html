@@ -1,1 +1,41 @@
-<app-menu></app-menu>
+<main>
+  <div class="row">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">Date de début</th>
+          <th scope="col">Date de fin</th>
+          <th scope="col">Nature</th>
+          <th scope="col">Départ</th>
+          <th scope="col">Arrivée</th>
+          <th scope="col">Transport</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr *ngFor="let validMission of listemissions">
+          <td>{{validMission.dateDebut| date: 'shortDate'}}</td>
+          <td>{{validMission.dateFin | date: 'shortDate'}}</td>
+          <td>{{validMission.nature.libelle}}</td>
+          <td>{{validMission.villeDepart}}</td>
+          <td>{{validMission.villeArrivee}}</td>
+          <td>{{validMission.transport.libelle}}</td>
+          <td>{{validMission.status}}</td>
+          <td align="right">
+            <!-- Si la mission est en mode attente de validation, click Ok = VALIDATION et click delete = REJETEE></a>-->
+            <a><img class="mr-3" src="../../assets/images/ok.png"
+                *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION' then validMission.status == 'VALIDEE'" width="30"
+                alt="edit" routerLink="/gestion-mission"></a>
+            <a><img src="../../assets/images/delete.jpg"
+                *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION' then validMission.status == 'REJETEE'" width="20"
+                alt="delete" routerLink="/gestion-mission"></a>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>

@@ -66,6 +66,7 @@ export class DemandeMissionComponent implements OnInit {
     this._dataService.addMission(this.mission).subscribe((msg: string) => {
 
       this.msgRetour = msg;
+      this._dataService.getMissions();
       this.activeModal.close();
       const modal = this._modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
@@ -83,6 +84,6 @@ export class DemandeMissionComponent implements OnInit {
     const date1 = moment(this.mission.dateDebut);
     const date2 = moment(this.mission.dateFin);
     const diffInDays = Math.abs(date1.diff(date2, 'days'));
-    this.primes = this.mission.nature.valeurPrime * diffInDays * this.mission.nature.tjm/100;
+    this.primes = this.mission.nature.valeurPrime * diffInDays * this.mission.nature.tjm / 100;
   }
 }
