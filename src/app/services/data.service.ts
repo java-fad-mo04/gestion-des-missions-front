@@ -13,19 +13,21 @@ const url = environment.baseUrl;
   providedIn: 'root'
 })
 export class DataService {
-  mission = new Subject<Mission>();
+  missionSubject = new Subject<Mission>();
+  natureSubject = new Subject<Nature[]>();
   constructor(private _httpClient: HttpClient) { }
+
 // Mission
   getMissions(): Observable<Mission[]> {
-    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true});
-  }
-
-  getMission(id: number): Observable<Mission[]> {
-    return this._httpClient.get<Mission[]>(`${url}mission/${id}`, {withCredentials: true}).pipe(
+    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true}).pipe(
       tap(miss => {
-        this.mission.next(miss);
+        this.missionSubject.next(miss);
       })
     );
+  }
+
+  getMission(id: number): Observable<Mission> {
+    return this._httpClient.get<Mission>(`${url}mission/${id}`, {withCredentials: true});
   }
 
   addMission(mission: Mission){
@@ -41,6 +43,13 @@ export class DataService {
     return this._httpClient.delete<string>(`${url}mission/${id}`, {responseType: 'text' as 'json' });
   }
 //Nature
+emitListeNat() {
+  let listeNat: Nature[];
+  this.getNatures().subscribe((arg: Nature[]) => {
+    listeNat = arg;
+    this.natureSubject.next(listeNat);
+  });
+}
   getNatures(): Observable<Nature[]> {
     return this._httpClient.get<Nature[]>(`${url}nature`, {withCredentials: true});
   }
@@ -51,6 +60,11 @@ export class DataService {
 
   modifierNature(nature: Nature) {
     return this._httpClient.patch<string>(`${url}nature`, nature, { responseType: 'text' as 'json' });
+  }
+  deleteNature(nature: Nature) {
+
+    return this._httpClient.delete<string>(`${url}nature/${nature.id}`, { responseType: 'text' as 'json' });
+
   }
 //Transport
   getTransport(): Observable<Transport[]> {
