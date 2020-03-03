@@ -46,15 +46,6 @@ export class ModifmissionComponent implements OnInit {
     this.submitted = true;
   }
 
-  /*$scope.flipBetweenEditMode = function (isReadOnlyMode) {
-    if (!isReadOnlyMode) {
-        $scope.EditUserForm.$rollbackViewValue();
-    }
-    console.log(isReadOnlyMode);
-    $scope.isReadOnlyMode = !isReadOnlyMode;
-};*/
-
-
   annuler() {
     this.activeModal.close('Close click');
   }

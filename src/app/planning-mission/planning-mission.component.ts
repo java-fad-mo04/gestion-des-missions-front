@@ -1,61 +1,71 @@
+
+import { Title } from '@angular/platform-browser';
+import { DataService } from '../services/data.service';
+import { Event } from '../models/events';
+import { Subscription } from 'rxjs';
 import {
-  Component, OnInit,
+  Component,
+   OnInit,
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+
+import { isSameDay,  isSameMonth} from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView
-} from 'angular-calendar';
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
+import { CalendarEvent,  CalendarView} from 'angular-calendar';
+import { colors } from '../models/colours';
 
 @Component({
   selector: 'app-planning-mission',
   templateUrl: './planning-mission.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class PlanningMissionComponent implements OnInit {
+  eventsC: Event[];
+  eventSubscription: Subscription;
+  viewDate: Date = new Date();
+
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Month;
 
-CalendarView = CalendarView;
+  CalendarView = CalendarView;
 
-viewDate: Date = new Date();
+  refresh: Subject<any> = new Subject();
 
-modalData: {
-  action: string;
-  event: CalendarEvent;
-};
-refresh: Subject<any> = new Subject();
-activeDayIsOpen: boolean = true;
+  events: Event[];
 
+  activeDayIsOpen: boolean = true;
 
-  constructor(private _titleService: Title, private _modal: NgbModal) { }
+  constructor(private _titleService: Title, private _dataService: DataService, private _modal: NgbModal) { }
 
   ngOnInit() {
     this._titleService.setTitle( 'Planning - GDM' );
+
+    this.eventSubscription = this._dataService.eventSubject
+    .subscribe((listeEvents: Event[]) => {
+      this.eventsC = listeEvents; });
+
+   this._dataService.getEvents();
+
+  }
+
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+    if (isSameMonth(date, this.viewDate)) {
+      if (
+        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+        events.length === 0
+      ) {
+        this.activeDayIsOpen = false;
+      } else {
+        this.activeDayIsOpen = true;
+      }
+      this.viewDate = date;
+    }
   }
 
 
@@ -65,5 +75,10 @@ activeDayIsOpen: boolean = true;
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  closeOpenYearViewDay() {
+    this.activeDayIsOpen = false;
+    this.viewDate =  new Date();
   }
 }

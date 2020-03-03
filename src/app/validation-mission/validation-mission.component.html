@@ -25,10 +25,10 @@
           <td>{{validMission.status}}</td>
           <td align="right">
             <!-- Si la mission est en mode attente de validation, click Ok = VALIDATION et click delete = REJETEE></a>-->
-            <a><img class="mr-3" src="../../assets/images/ok.png"
+            <a><img class="mr-3" src="assets/images/ok.png"
                 *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION' then validMission.status == 'VALIDEE'" width="30"
                 alt="edit" routerLink="/gestion-mission"></a>
-            <a><img src="../../assets/images/delete.jpg"
+            <a><img src="assets/images/delete.jpg"
                 *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION' then validMission.status == 'REJETEE'" width="20"
                 alt="delete" routerLink="/gestion-mission"></a>
 
