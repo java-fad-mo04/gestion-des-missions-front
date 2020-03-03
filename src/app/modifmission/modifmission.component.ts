@@ -46,7 +46,6 @@ export class ModifmissionComponent implements OnInit {
     this.submitted = true;
   }
 
-
   annuler() {
     this.activeModal.close('Close click');
   }

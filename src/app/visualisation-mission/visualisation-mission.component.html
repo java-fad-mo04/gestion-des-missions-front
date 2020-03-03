@@ -31,9 +31,9 @@
         <td>{{mission.transport.libelle}}</td>
         <td>{{mission.status}}</td>
         <td align="right">
-          <a (click)="openView(mission.id)"><img src="../../assets/images/eye.svg" *ngIf="mission.status == 'VALIDEE'" width="20" alt="view"></a>
-          <a (click)="openEdit(mission.id)"><img class="mr-3" src="../../assets/images/pencil.svg" *ngIf="mission.status == 'INITIALE'" width="20" alt="edit"></a>
-          <a (click)="openDelete(mission.id)"><img src="../../assets/images/trash.svg" *ngIf="mission.status != 'VALIDEE'" width="20" alt="delete"></a>
+          <a (click)="openView(mission.id)"><img src="assets/images/eye.svg" *ngIf="mission.status == 'VALIDEE'" width="20" alt="view"></a>
+          <a (click)="openEdit(mission.id)"><img class="mr-3" src="assets/images/pencil.svg" *ngIf="mission.status == 'INITIALE'" width="20" alt="edit"></a>
+          <a (click)="openDelete(mission.id)"><img src="assets/images/trash.svg" *ngIf="mission.status != 'VALIDEE'" width="20" alt="delete"></a>
         </td>
       </tr>
     </tbody>

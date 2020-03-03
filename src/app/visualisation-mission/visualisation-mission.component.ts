@@ -21,8 +21,8 @@ export class VisualisationMissionComponent implements OnInit {
   modalOptions: NgbModalOptions;
   msgRetour: string;
   missions: Mission[];
-
   missionSubscription: Subscription;
+
   constructor(private _titleService: Title, private _dataService: DataService,
     private _modalService: NgbModal) {
 
