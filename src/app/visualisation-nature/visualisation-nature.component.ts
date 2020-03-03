@@ -4,7 +4,7 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { CreationNatureComponent } from '../creation-nature/creation-nature.component';
 import { ModifierNatureComponent } from '../modifier-nature/modifier-nature.component';
 import { Title } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { DeleteNatureComponent } from '../delete-nature/delete-nature.component';
 import { DataService } from '../services/data.service';
 
@@ -18,6 +18,7 @@ export class VisualisationNatureComponent implements OnInit {
   msgRetour: string;
 
   listeNature: Nature[];
+  listeNatureSubscription: Subscription;
 
   constructor(private _dataService: DataService, private _modalService: NgbModal, private _titleService: Title) {
 
@@ -31,11 +32,15 @@ export class VisualisationNatureComponent implements OnInit {
   ngOnInit() {
     this._titleService.setTitle('Gestion de missions - GDM');
 
-    this._dataService.getNatures().subscribe((nature: Nature[]) => {
-      this.listeNature = nature;
-    }, error => console.log(error));
 
+    this.listeNatureSubscription = this._dataService.natureSubject.subscribe(
+      (nature: Nature[]) => {
+        this.listeNature = nature;
+      }
+    );
+      this._dataService.emitListeNat();
   }
+
   openCreate() {
     this._modalService.open(CreationNatureComponent);
   }

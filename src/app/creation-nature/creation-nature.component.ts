@@ -37,7 +37,7 @@ export class CreationNatureComponent implements OnInit {
 
       this.msgRetour = msg;
       this.activeModal.close();
-
+      this._dataService.emitListeNat();
       const modal = this.modalService.open(MsgBoxComponent);
       modal.componentInstance.msg = this.msgRetour;
 

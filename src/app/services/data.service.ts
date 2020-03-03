@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Mission } from '../models/mission';
 import { Nature } from '../models/nature';
 import { Transport } from '../models/transport';
+import {tap, catchError} from 'rxjs/operators';
 
 const url = environment.baseUrl;
 
@@ -12,15 +13,23 @@ const url = environment.baseUrl;
   providedIn: 'root'
 })
 export class DataService {
+  missionSubject = new Subject<Mission[]>();
+  missionList: Mission[];
+  natureSubject = new Subject<Nature[]>();
 
   constructor(private _httpClient: HttpClient) { }
+
 // Mission
-  getMissions(): Observable<Mission[]> {
-    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true});
+  getMissions() {
+    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true})
+    .subscribe((miss: Mission[]) => {
+      this.missionList = miss;
+        this.missionSubject.next(this.missionList);
+      });
   }
 
-  getMission(id: number): Observable<Mission[]> {
-    return this._httpClient.get<Mission[]>(`${url}mission/${id}`, {withCredentials: true});
+  getMission(id: number): Observable<Mission> {
+    return this._httpClient.get<Mission>(`${url}mission/${id}`, {withCredentials: true});
   }
 
   addMission(mission: Mission){
@@ -33,9 +42,22 @@ export class DataService {
 
   deleteMission(id: number) {
     console.log(id);
-    return this._httpClient.delete<string>(`${url}mission/${id}`, {responseType: 'text' as 'json' });
+    return this._httpClient.delete<string>(`${url}mission/${id}`, { responseType: 'text' as 'json' });
   }
-//Nature
+
+  getMissionPrime(id: number, date: string) {
+    return this._httpClient.get<Mission[]>(`${url}mission/${id}/${date}`, { withCredentials: true });
+  }
+
+  // Nature
+
+  emitListeNat() {
+    let listeNat: Nature[];
+    this.getNatures().subscribe((arg: Nature[]) => {
+      listeNat = arg;
+      this.natureSubject.next(listeNat);
+    });
+  }
   getNatures(): Observable<Nature[]> {
     return this._httpClient.get<Nature[]>(`${url}nature`, {withCredentials: true});
   }
@@ -47,7 +69,13 @@ export class DataService {
   modifierNature(nature: Nature) {
     return this._httpClient.patch<string>(`${url}nature`, nature, { responseType: 'text' as 'json' });
   }
-//Transport
+  deleteNature(nature: Nature) {
+
+    return this._httpClient.delete<string>(`${url}nature/${nature.id}`, { responseType: 'text' as 'json' });
+
+  }
+  // Transport
+
   getTransport(): Observable<Transport[]> {
     return this._httpClient.get<Transport[]>(`${url}transport`, {withCredentials: true});
   }

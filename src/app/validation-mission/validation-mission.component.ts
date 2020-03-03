@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Mission } from '../models/mission';
+import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-validation-mission',
@@ -8,10 +11,21 @@ import { Title } from '@angular/platform-browser';
 })
 export class ValidationMissionComponent implements OnInit {
 
-  constructor(private titleService: Title) { }
+  listemissions: Mission[];
+  missions: Mission[];
+  missionSubscription: Subscription;
 
-  ngOnInit() {
-    this.titleService.setTitle( 'Validation - GDM' );
+  constructor(private titleService: Title, private _dataService: DataService) { }
+
+  ngOnInit(): void {
+    this.titleService.setTitle('Validation - GDM');
+
+
+    this.missionSubscription = this._dataService.missionSubject
+    .subscribe((listeMissions: Mission[]) => {
+      this.missions = listeMissions;
+},
+   error => console.log(error));
+   this._dataService.getMissions();
   }
-
 }
