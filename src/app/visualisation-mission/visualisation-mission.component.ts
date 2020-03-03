@@ -34,7 +34,7 @@ export class VisualisationMissionComponent implements OnInit {
 
   ngOnInit() {
     this._titleService.setTitle( 'Gestion de missions - GDM' );
-    
+
     this.missionSubscription = this._dataService.missionSubject
       .subscribe((listeMissions: Mission[]) => {
         this.missions = listeMissions;

@@ -28,6 +28,10 @@ export class DataService {
       });
   }
 
+  getMissionsObservable() {
+    return this._httpClient.get<Mission[]>(`${url}mission`, {withCredentials: true});
+  }
+
   getMission(id: number): Observable<Mission> {
     return this._httpClient.get<Mission>(`${url}mission/${id}`, {withCredentials: true});
   }
