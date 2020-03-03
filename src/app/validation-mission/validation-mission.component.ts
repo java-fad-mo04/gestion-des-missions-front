@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ValidationMissionComponent implements OnInit {
 
+  mission: Mission;
   listemissions: Mission[];
   missions: Mission[];
   missionSubscription: Subscription;
@@ -20,12 +21,29 @@ export class ValidationMissionComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('Validation - GDM');
 
-
-    this.missionSubscription = this._dataService.missionSubject
-    .subscribe((listeMissions: Mission[]) => {
+    this._dataService.getMissionsObservable().subscribe((listeMissions: Mission[]) => {
       this.missions = listeMissions;
-},
-   error => console.log(error));
-   this._dataService.getMissions();
+    },
+    error => console.log(error));
+    this._dataService.getMissions();
+
+
+    }
+  validerMission() {
+    this.mission.status = 'VALIDEE';
+    this._dataService.modifierMission(this.mission).subscribe(
+      () => {
+
+      },
+      error => console.log(error));
   }
+
+  rejeterMission() {
+    this.mission.status = 'REJETEE';
+    this._dataService.modifierMission(this.mission).subscribe(
+      () => {
+
+      },
+      error => console.log(error));
+    }
 }

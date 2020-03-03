@@ -38,6 +38,7 @@ export class VisualisationMissionComponent implements OnInit {
     this.missionSubscription = this._dataService.missionSubject
       .subscribe((listeMissions: Mission[]) => {
         this.missions = listeMissions;
+
   },
      error => console.log(error));
      this._dataService.getMissions();
