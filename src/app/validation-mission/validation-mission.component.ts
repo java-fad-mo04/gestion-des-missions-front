@@ -10,17 +10,36 @@ import { DataService } from '../services/data.service';
 })
 export class ValidationMissionComponent implements OnInit {
 
+  mission: Mission = {};
   listemissions: Mission[];
 
-  constructor(private titleService: Title, private dataService: DataService) { }
+  constructor(private titleService: Title, private _dataService: DataService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Validation - GDM');
 
 
-    this.dataService.getMissions().subscribe(
+    this._dataService.getMissions().subscribe(
       (listeMissions: Mission[]) => {
-      this.listemissions = listeMissions;
+        this.listemissions = listeMissions;
+      },
+      error => console.log(error));
+
+
+  }
+  validerMission() {
+    this.mission.status = 'VALIDEE';
+    this._dataService.modifierMission(this.mission).subscribe(
+      () => {
+
+      },
+      error => console.log(error));
+  }
+  rejeterMission() {
+    this.mission.status = 'REJETEE';
+    this._dataService.modifierMission(this.mission).subscribe(
+      () => {
+
       },
       error => console.log(error));
   }

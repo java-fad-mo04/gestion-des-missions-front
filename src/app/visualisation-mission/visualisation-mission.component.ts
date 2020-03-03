@@ -34,7 +34,7 @@ export class VisualisationMissionComponent implements OnInit {
     this._titleService.setTitle( 'Gestion de missions - GDM' );
 
     this._dataService.getMissions().subscribe(
-      ( listeMissions: Mission[]) => {this.missions = listeMissions;
+      (listeMissions: Mission[]) => {this.missions = listeMissions;
   },
      error => console.log(error));
   }
