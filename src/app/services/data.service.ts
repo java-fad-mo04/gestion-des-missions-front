@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Mission } from '../models/mission';
+import { Event } from '../models/events';
 import { Nature } from '../models/nature';
 import { Transport } from '../models/transport';
 import {tap, catchError} from 'rxjs/operators';
@@ -16,6 +17,8 @@ export class DataService {
   missionSubject = new Subject<Mission[]>();
   missionList: Mission[];
   natureSubject = new Subject<Nature[]>();
+  eventSubject = new Subject<Event[]>();
+  eventList: Event[];
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -80,5 +83,13 @@ export class DataService {
     return this._httpClient.get<Transport[]>(`${url}transport`, {withCredentials: true});
   }
 
+//Events
+getEvents() {
+  return this._httpClient.get<Event[]>(`${url}mission/events`, {withCredentials: true})
+  .subscribe((eve: Event[]) => {
+    this.eventList = eve;
+      this.eventSubject.next(this.eventList);
+    });
+}
 
 }
