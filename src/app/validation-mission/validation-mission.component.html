@@ -1,4 +1,12 @@
-<main>
+<app-menu></app-menu>
+
+<div class="row mt-5"></div>
+
+<div class="row mb-3 justify-content-center">
+  <h2>Validation de mission</h2>
+</div>
+
+
   <div class="row">
     <table class="table table-striped text-center">
       <thead>
@@ -25,17 +33,13 @@
           <td>{{validMission.status}}</td>
           <td align="right">
             <!-- Si la mission est en mode attente de validation, click Ok = VALIDATION et click delete = REJETEE></a>-->
-            <a><img class="mr-3" src="../../assets/images/ok.png"
-                *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION' then validMission.status == 'VALIDEE'" width="30"
-                alt="edit" routerLink="/gestion-mission"></a>
-            <a><img src="../../assets/images/delete.jpg"
-                *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION' then validMission.status == 'REJETEE'" width="20"
-                alt="delete" routerLink="/gestion-mission"></a>
+            <a (click)="validerMission()"><img class="mr-3" src="../../assets/images/ok.png"
+                *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION'" width="30"></a>
+            <a (click)="rejeterMission()"><img src="../../assets/images/delete.jpg"
+                *ngIf="validMission.status == 'EN_ATTENTE_VALIDATION'" width="20"></a>
 
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
-</main>
