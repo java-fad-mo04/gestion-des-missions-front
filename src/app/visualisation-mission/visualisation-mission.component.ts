@@ -9,6 +9,7 @@ import { ViewMissionComponent } from '../view-mission/view-mission.component';
 import { DeleteMissionComponent } from '../delete-mission/delete-mission.component';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { MsgBoxComponent } from '../msg-box/msg-box.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-visualisation-mission',
@@ -20,7 +21,8 @@ export class VisualisationMissionComponent implements OnInit {
   modalOptions: NgbModalOptions;
   msgRetour: string;
   missions: Mission[];
-  mission: Mission;
+
+  missionSubscription: Subscription;
   constructor(private _titleService: Title, private _dataService: DataService,
     private _modalService: NgbModal) {
 
@@ -32,12 +34,15 @@ export class VisualisationMissionComponent implements OnInit {
 
   ngOnInit() {
     this._titleService.setTitle( 'Gestion de missions - GDM' );
+    
+    this.missionSubscription = this._dataService.missionSubject
+      .subscribe((listeMissions: Mission[]) => {
+        this.missions = listeMissions;
 
-    this._dataService.getMissions().subscribe(
-      (listeMissions: Mission[]) => {this.missions = listeMissions;
   },
      error => console.log(error));
-  }
+     this._dataService.getMissions();
+    }
 
   openEdit(id: number) {
     let miss: Mission;

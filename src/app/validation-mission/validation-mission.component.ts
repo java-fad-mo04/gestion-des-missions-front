@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Mission } from '../models/mission';
 import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-validation-mission',
@@ -12,6 +13,8 @@ export class ValidationMissionComponent implements OnInit {
 
   mission: Mission = {};
   listemissions: Mission[];
+  missions: Mission[];
+  missionSubscription: Subscription;
 
   constructor(private titleService: Title, private _dataService: DataService) { }
 
@@ -42,5 +45,5 @@ export class ValidationMissionComponent implements OnInit {
 
       },
       error => console.log(error));
-  }
+
 }
